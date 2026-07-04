@@ -4,6 +4,12 @@
   <b>简体中文</b> ｜ <a href="#-english">English</a>
 </p>
 
+<p align="center">
+  <a href="https://gamebox.bluecatbot.com">🌐 官网 / 模块目录</a> ·
+  <a href="https://gamebox.bluecatbot.com/zh/demos/">🎮 实时演示</a> ·
+  <a href="https://shushuitie2017.github.io/GameBox/">GitHub Pages 镜像</a>
+</p>
+
 ---
 
 ## 📖 简介
@@ -72,6 +78,12 @@ mkdir -p ~/.claude/skills/gamebox && cp -R gamebox/. ~/.claude/skills/gamebox/
 
 <p align="center">
   <a href="#-简介">简体中文</a> ｜ <b>English</b>
+</p>
+
+<p align="center">
+  <a href="https://gamebox.bluecatbot.com/en/">🌐 Website / module catalog</a> ·
+  <a href="https://gamebox.bluecatbot.com/en/demos/">🎮 Live demos</a> ·
+  <a href="https://shushuitie2017.github.io/GameBox/">GitHub Pages mirror</a>
 </p>
 
 ## 📖 Introduction
