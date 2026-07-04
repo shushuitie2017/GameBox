@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="importmap">{"imports":{"three":"/GameBox/static/vendor/three.module.js"}}</script><title>SnakeMotionController — GameBox</title><meta name="description" content="スネークの旋回・成長入力をグリッド方向と体節状態へ変換する。"><link rel="canonical" href="https://shushuitie2017.github.io/GameBox/ja/modules/SnakeMotionController.html"><link rel="alternate" hreflang="en" href="https://shushuitie2017.github.io/GameBox/en/modules/SnakeMotionController.html"><link rel="alternate" hreflang="zh" href="https://shushuitie2017.github.io/GameBox/zh/modules/SnakeMotionController.html"><link rel="alternate" hreflang="ja" href="https://shushuitie2017.github.io/GameBox/ja/modules/SnakeMotionController.html"><link rel="alternate" hreflang="x-default" href="https://shushuitie2017.github.io/GameBox/en/modules/SnakeMotionController.html"><meta property="og:type" content="website"><meta property="og:site_name" content="GameBox"><meta property="og:title" content="SnakeMotionController — GameBox"><meta property="og:description" content="スネークの旋回・成長入力をグリッド方向と体節状態へ変換する。"><meta property="og:url" content="https://shushuitie2017.github.io/GameBox/ja/modules/SnakeMotionController.html"><meta property="og:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="SnakeMotionController — GameBox"><meta name="twitter:description" content="スネークの旋回・成長入力をグリッド方向と体節状態へ変換する。"><meta name="twitter:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "GameBox", "url": "https://shushuitie2017.github.io/GameBox/ja/modules/SnakeMotionController.html", "description": "スネークの旋回・成長入力をグリッド方向と体節状態へ変換する。", "inLanguage": "ja"}</script><link rel="icon" href="/GameBox/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/GameBox/static/style.css"></head><body><div class="bg"></div><nav><div class="nav-in"><a href="/GameBox/ja/" class="brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></a><div class="nav-links"><a href="/GameBox/ja/modules/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 2 2 7l10 5 10-5L12 2Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>モジュール</a><a href="/GameBox/ja/demos/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M9 9l4 3-4 3z"/></svg>デモ</a><a href="/GameBox/ja/#how" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>使い方</a><a href="/GameBox/ja/#install" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>導入</a></div><div class="nav-right"><details class="lang-dd"><summary class="ls-sum"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg><span>日本語</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.7"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ls-panel"><a href="/GameBox/en/modules/SnakeMotionController.html" class="ls-item">English</a><a href="/GameBox/zh/modules/SnakeMotionController.html" class="ls-item">中文</a><a href="/GameBox/ja/modules/SnakeMotionController.html" class="ls-item on">日本語<span class="ls-chk">✓</span></a></div></details><script>try{localStorage.setItem('gbx_lang','ja')}catch(e){}</script><a href="https://github.com/shushuitie2017/GameBox" class="nav-cta" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a></div></div></nav><header class="phead"><div class="wrap"><div class="crumb"><a href="/GameBox/ja/">ホーム</a> / <a href="/GameBox/ja/modules/">モジュール</a> / <a href="/GameBox/ja/modules/#cat-actor-motion">アクター運動</a> / SnakeMotionController</div><div class="mtitle-row"><h1 class="ptitle mono">SnakeMotionController</h1><span class="tier tier-pure">純ロジック</span></div><p class="psub">スネークの旋回・成長入力をグリッド方向と体節状態へ変換する。</p></div></header><main class="wrap narrow module-body"><div class="meta-grid"><div class="meta-row"><span class="mk">カテゴリ</span><span class="mv">アクター運動</span></div><div class="meta-row"><span class="mk">依存ティア</span><span class="mv"><span class="tier tier-pure">純ロジック</span></span></div><div class="meta-row"><span class="mk">内部依存</span><span class="mv"><span class="muted">なし</span></span></div><div class="meta-row"><span class="mk">関連モジュール</span><span class="mv"><span class="muted">なし</span></span></div><div class="meta-row"><span class="mk">デモシーン</span><span class="mv"><code>snake</code> · <a class="pill" href="/GameBox/ja/demos/">スネーク ↓</a></span></div></div><div class="getthis"><div class="gt-head"><b>このモジュールだけ取得</b><button class="copy-path" data-copy="modules/actor-motion/SnakeMotionController.js">相対パスをコピー</button></div><code class="gt-path">modules/actor-motion/SnakeMotionController.js</code><p class="sub">内部依存もまとめて、相対ディレクトリ構造を保ってコピーします。</p></div><section class="mod-demo"><div class="src-head"><h2 class="sh">スネーク</h2><span class="tier tier-pure">純ロジック</span></div><div class="demo-stage" style="aspect-ratio:16/9"><div class="demo-canvas" id="demo-snake"></div><script type="module">import{mount}from"/GameBox/static/demos/snake.js";mount(document.getElementById("demo-snake"),{interactive:true});</script></div><p class="demo-controls">矢印キーで操作（先に盤面をクリック）。</p></section><section class="source"><div class="src-head"><h2 class="sh">ソース</h2><button class="copy">ソースをコピー</button></div><div class="code code-src"><pre><code>const cloneCell = (cell) =&gt; {
+  return {
+    right: Math.floor(cell.right),
+    forward: Math.floor(cell.forward),
+  };
+};
+
+const cloneCells = (cells = []) =&gt; cells.map(cloneCell);
+
+const CARDINAL_DIRECTIONS = [
+  {right: 0, forward: 1},
+  {right: 1, forward: 0},
+  {right: 0, forward: -1},
+  {right: -1, forward: 0},
+];
+
+function turnRelativeLeft(direction) {
+  const index = CARDINAL_DIRECTIONS.findIndex((item) =&gt;
+    item.right === direction.right &amp;&amp; item.forward === direction.forward
+  );
+
+  return CARDINAL_DIRECTIONS[(index + 3) % 4];
+}
+
+function turnRelativeRight(direction) {
+  const index = CARDINAL_DIRECTIONS.findIndex((item) =&gt;
+    item.right === direction.right &amp;&amp; item.forward === direction.forward
+  );
+
+  return CARDINAL_DIRECTIONS[(index + 1) % 4];
+}
+
+export function stepSnakeCell(cell, direction) {
+  const current = cloneCell(cell);
+  const vector = direction;
+
+  return {
+    right: current.right + vector.right,
+    forward: current.forward + vector.forward,
+  };
+}
+
+function createDefaultSegments(
+  initialLength,
+  direction,
+  startCell
+) {
+  const head = cloneCell(startCell);
+  const segments = [head];
+  let cursor = head;
+  const reverseDirection = {
+    right: -direction.right,
+    forward: -direction.forward,
+  };
+
+  for (let index = 1; index &lt; initialLength; index += 1) {
+    cursor = stepSnakeCell(cursor, reverseDirection);
+    segments.push(cursor);
+  }
+
+  return segments;
+}
+
+export class SnakeMotionController {
+  constructor({
+    initialLength = 4,
+    initialDirection = {forward: 1, right: 0},
+    startCell = {forward: 0, right: 0},
+    segments = null,
+    pendingGrowth = 0,
+    mode = 'cardinal'
+  }) {
+    this.mode = mode;
+    this.initialLength = Math.max(2, Math.floor(initialLength));
+    this.initialDirection = {
+      right: initialDirection.right,
+      forward: initialDirection.forward,
+    };
+    this.startCell = cloneCell(startCell);
+
+    this.pendingGrowth = 0;
+    this.segments = [];
+
+    this.reset({
+      segments,
+      pendingGrowth,
+    });
+  }
+
+  get head() {
+    return this.segments[0] ? cloneCell(this.segments[0]) : null;
+  }
+
+  get tail() {
+    return this.segments.length &gt; 0 ? cloneCell(this.segments[this.segments.length - 1]) : null;
+  }
+
+  get length() {
+    return this.segments.length;
+  }
+
+  getDirection() {
+    return {
+      right: this.direction.right,
+      forward: this.direction.forward,
+    };
+  }
+
+  reset({
+    segments = null,
+    initialLength = this.initialLength,
+    direction = this.initialDirection,
+    startCell = this.startCell,
+    pendingGrowth = 0,
+  }) {
+
+    this.direction = {
+      right: direction.right,
+      forward: direction.forward,
+    };
+    this.segments = segments
+      ? cloneCells(segments)
+      : createDefaultSegments(initialLength, direction, startCell);
+    this.pendingGrowth = Math.max(0, Math.floor(pendingGrowth));
+    return this.getSegments();
+  }
+
+  grow(amount = 1) {
+    this.pendingGrowth += Math.max(0, Math.floor(amount));
+    return this.pendingGrowth;
+  }
+
+  // left/right: true turns toward the relative left/right directions in chase mode.
+  // left/right/forward/backward: true moves toward allowed basis-cardinal directions in cardinal mode.
+  move({
+    left = false,
+    right = false,
+    forward = false,
+    backward = false
+  }) {
+    let direction = {
+      right: this.direction.right,
+      forward: this.direction.forward,
+    };
+
+    if (this.mode === 'chase') {
+      if (left &amp;&amp; !right) {
+        direction = turnRelativeLeft(direction);
+      } else if (right &amp;&amp; !left) {
+        direction = turnRelativeRight(direction);
+      }
+    } else if (direction.forward !== 0) {
+      if (left &amp;&amp; !right) {
+        direction = CARDINAL_DIRECTIONS[3];
+      } else if (right &amp;&amp; !left) {
+        direction = CARDINAL_DIRECTIONS[1];
+      }
+    } else if (direction.right !== 0) {
+      if (forward &amp;&amp; !backward) {
+        direction = CARDINAL_DIRECTIONS[0];
+      } else if (backward &amp;&amp; !forward) {
+        direction = CARDINAL_DIRECTIONS[2];
+      }
+    }
+
+    const head = this.head;
+    const nextHead = stepSnakeCell(head, direction);
+    const isGrowing = this.pendingGrowth &gt; 0;
+    const pendingGrowth = this.pendingGrowth;
+    const pendingGrowthAfter = Math.max(0, pendingGrowth - (isGrowing ? 1 : 0));
+    const segments = [
+      nextHead,
+      ...this.segments.slice(0, isGrowing ? this.segments.length : -1),
+    ];
+
+    this.direction = {
+      right: direction.right,
+      forward: direction.forward,
+    };
+    this.pendingGrowth = pendingGrowthAfter;
+    this.segments = cloneCells(segments);
+
+    return {
+      direction: {
+        right: direction.right,
+        forward: direction.forward,
+      },
+      segments: this.getSegments(),
+    };
+  }
+
+  getSegments() {
+    return cloneCells(this.segments);
+  }
+}
+</code></pre></div></section></main><footer><div class="wrap"><div class="foot-in"><div class="foot-brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></div><div class="foot-links"><a href="/GameBox/ja/modules/">モジュール</a><a href="/GameBox/ja/#how">使い方</a><a href="/GameBox/ja/#install">導入</a><a href="https://github.com/shushuitie2017/GameBox" target="_blank" rel="noopener">GitHub</a></div><div class="foot-note">GameBox · MIT License · コーディングエージェント向けブラウザ 3D ゲームの部品</div></div></div></footer><script src="/GameBox/static/app.js"></script></body></html>

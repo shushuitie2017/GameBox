@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="importmap">{"imports":{"three":"/GameBox/static/vendor/three.module.js"}}</script><title>RaceCheckpointLapPlay — GameBox</title><meta name="description" content="チェックポイント周回レースの状態・カウントダウン開始・進捗・ラップ完了・順位・イベント・リセットを管理する。"><link rel="canonical" href="https://shushuitie2017.github.io/GameBox/ja/modules/RaceCheckpointLapPlay.html"><link rel="alternate" hreflang="en" href="https://shushuitie2017.github.io/GameBox/en/modules/RaceCheckpointLapPlay.html"><link rel="alternate" hreflang="zh" href="https://shushuitie2017.github.io/GameBox/zh/modules/RaceCheckpointLapPlay.html"><link rel="alternate" hreflang="ja" href="https://shushuitie2017.github.io/GameBox/ja/modules/RaceCheckpointLapPlay.html"><link rel="alternate" hreflang="x-default" href="https://shushuitie2017.github.io/GameBox/en/modules/RaceCheckpointLapPlay.html"><meta property="og:type" content="website"><meta property="og:site_name" content="GameBox"><meta property="og:title" content="RaceCheckpointLapPlay — GameBox"><meta property="og:description" content="チェックポイント周回レースの状態・カウントダウン開始・進捗・ラップ完了・順位・イベント・リセットを管理する。"><meta property="og:url" content="https://shushuitie2017.github.io/GameBox/ja/modules/RaceCheckpointLapPlay.html"><meta property="og:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="RaceCheckpointLapPlay — GameBox"><meta name="twitter:description" content="チェックポイント周回レースの状態・カウントダウン開始・進捗・ラップ完了・順位・イベント・リセットを管理する。"><meta name="twitter:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "GameBox", "url": "https://shushuitie2017.github.io/GameBox/ja/modules/RaceCheckpointLapPlay.html", "description": "チェックポイント周回レースの状態・カウントダウン開始・進捗・ラップ完了・順位・イベント・リセットを管理する。", "inLanguage": "ja"}</script><link rel="icon" href="/GameBox/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/GameBox/static/style.css"></head><body><div class="bg"></div><nav><div class="nav-in"><a href="/GameBox/ja/" class="brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></a><div class="nav-links"><a href="/GameBox/ja/modules/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 2 2 7l10 5 10-5L12 2Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>モジュール</a><a href="/GameBox/ja/demos/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M9 9l4 3-4 3z"/></svg>デモ</a><a href="/GameBox/ja/#how" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>使い方</a><a href="/GameBox/ja/#install" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>導入</a></div><div class="nav-right"><details class="lang-dd"><summary class="ls-sum"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg><span>日本語</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.7"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ls-panel"><a href="/GameBox/en/modules/RaceCheckpointLapPlay.html" class="ls-item">English</a><a href="/GameBox/zh/modules/RaceCheckpointLapPlay.html" class="ls-item">中文</a><a href="/GameBox/ja/modules/RaceCheckpointLapPlay.html" class="ls-item on">日本語<span class="ls-chk">✓</span></a></div></details><script>try{localStorage.setItem('gbx_lang','ja')}catch(e){}</script><a href="https://github.com/shushuitie2017/GameBox" class="nav-cta" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a></div></div></nav><header class="phead"><div class="wrap"><div class="crumb"><a href="/GameBox/ja/">ホーム</a> / <a href="/GameBox/ja/modules/">モジュール</a> / <a href="/GameBox/ja/modules/#cat-gameplay">ゲームプレイ</a> / RaceCheckpointLapPlay</div><div class="mtitle-row"><h1 class="ptitle mono">RaceCheckpointLapPlay</h1><span class="tier tier-pure">純ロジック</span></div><p class="psub">チェックポイント周回レースの状態・カウントダウン開始・進捗・ラップ完了・順位・イベント・リセットを管理する。</p></div></header><main class="wrap narrow module-body"><div class="meta-grid"><div class="meta-row"><span class="mk">カテゴリ</span><span class="mv">ゲームプレイ</span></div><div class="meta-row"><span class="mk">依存ティア</span><span class="mv"><span class="tier tier-pure">純ロジック</span></span></div><div class="meta-row"><span class="mk">内部依存</span><span class="mv"><span class="muted">なし</span></span></div><div class="meta-row"><span class="mk">関連モジュール</span><span class="mv"><span class="muted">なし</span></span></div><div class="meta-row"><span class="mk">デモシーン</span><span class="mv"><code>race</code> · <i class="muted">このデモシーンで紹介予定（近日公開）</i></span></div></div><div class="getthis"><div class="gt-head"><b>このモジュールだけ取得</b><button class="copy-path" data-copy="modules/gameplay/RaceCheckpointLapPlay.js">相対パスをコピー</button></div><code class="gt-path">modules/gameplay/RaceCheckpointLapPlay.js</code><p class="sub">内部依存もまとめて、相対ディレクトリ構造を保ってコピーします。</p></div><section class="source"><div class="src-head"><h2 class="sh">ソース</h2><button class="copy">ソースをコピー</button></div><div class="code code-src"><pre><code>export const RACE_STATES = Object.freeze({
+  WAITING: 'WAITING',
+  STARTING: 'STARTING',
+  STARTED: 'STARTED',
+  FINISHED: 'FINISHED',
+});
+
+export const RACE_CHECKPOINT_LAP_EVENTS = Object.freeze({
+  RACE_STARTED: 'race.started',
+  CHECKPOINT_PASSED: 'checkpoint.passed',
+  LAP_COMPLETED: 'lap.completed',
+  PLAYER_FINISHED: 'player.finished',
+  RACE_FINISHED: 'race.finished',
+});
+
+function clonePosition(position) {
+  return { x: position.x, y: position.y, z: position.z };
+}
+
+function distanceSquared(a, b) {
+  const dx = a.x - b.x;
+  const dy = a.y - b.y;
+  const dz = a.z - b.z;
+  return dx * dx + dy * dy + dz * dz;
+}
+
+function clonePlayerState(player) {
+  return {
+    playerId: player.playerId,
+    position: clonePosition(player.position),
+    completedLaps: player.completedLaps,
+    nextCheckpointIndex: player.nextCheckpointIndex,
+    finished: player.finished,
+    finishOrder: player.finishOrder,
+    finishTimeSeconds: player.finishTimeSeconds,
+  };
+}
+
+function createPlayerState({ playerId, position }) {
+  return {
+    playerId,
+    position: clonePosition(position),
+    completedLaps: 0,
+    nextCheckpointIndex: 0,
+    finished: false,
+    finishOrder: null,
+    finishTimeSeconds: null,
+  };
+}
+
+/**
+ * Owns a checkpoint-lap race state.
+ *
+ * Constructor keys:
+ * - checkpoints: ordered checkpoint objects with id, position, and radius.
+ * - lapCount: laps required to finish.
+ * - startingDelaySeconds: optional countdown duration used by startGame().
+ */
+export class RaceCheckpointLapPlay {
+  constructor({
+    checkpoints,
+    lapCount = 3,
+    startingDelaySeconds = 0,
+  }) {
+    this.checkpoints = checkpoints;
+    this.lapCount = lapCount;
+    this.checkpointPerLap = checkpoints.length;
+    this.startingDelaySeconds = startingDelaySeconds;
+
+    this.players = new Map();
+    this.raceState = RACE_STATES.WAITING;
+    this.elapsedSeconds = 0;
+    this.countdownSeconds = 0;
+    this.finishCounter = 0;
+    this._events = [];
+  }
+
+  addPlayer({ playerId, position }) {
+    const player = createPlayerState({ playerId, position });
+    if (this.raceState !== RACE_STATES.WAITING) {
+      throw new Error('players can only be added while the race is waiting');
+    }
+    if (this.players.has(playerId)) {
+      throw new Error(`player already exists: ${playerId}`);
+    }
+    this.players.set(playerId, player);
+  }
+
+  removePlayer(playerId) {
+    if (!this.players.delete(playerId)) {
+      throw new Error(`unknown player: ${playerId}`);
+    }
+  }
+
+  updatePlayer(playerId, position) {
+    const player = this._getPlayer(playerId);
+    player.position = clonePosition(position);
+  }
+
+  startGame() {
+    if (this.raceState !== RACE_STATES.WAITING) {
+      throw new Error('race can only be started from WAITING');
+    }
+    if (this.players.size === 0) {
+      throw new Error('race requires at least one player');
+    }
+
+    this._resetProgress();
+    if (this.startingDelaySeconds &gt; 0) {
+      this.raceState = RACE_STATES.STARTING;
+      this.countdownSeconds = this.startingDelaySeconds;
+      return;
+    }
+    this.raceState = RACE_STATES.STARTED;
+    this._queueEvent({ type: RACE_CHECKPOINT_LAP_EVENTS.RACE_STARTED });
+  }
+
+  reset() {
+    this._resetProgress();
+    this._clearEvents();
+    this.raceState = RACE_STATES.WAITING;
+    this.countdownSeconds = 0;
+  }
+
+  getPlayer(playerId) {
+    return clonePlayerState(this._getPlayer(playerId));
+  }
+
+  getStandings() {
+    return Array.from(this.players.values(), clonePlayerState).sort((a, b) =&gt; {
+      if (a.finished &amp;&amp; b.finished) return a.finishOrder - b.finishOrder;
+      if (a.finished) return -1;
+      if (b.finished) return 1;
+      if (a.completedLaps !== b.completedLaps) return b.completedLaps - a.completedLaps;
+      if (a.nextCheckpointIndex !== b.nextCheckpointIndex) {
+        return b.nextCheckpointIndex - a.nextCheckpointIndex;
+      }
+      return a.playerId.localeCompare(b.playerId);
+    });
+  }
+
+  snapshot() {
+    return {
+      raceState: this.raceState,
+      elapsedSeconds: this.elapsedSeconds,
+      countdownSeconds: this.countdownSeconds,
+      lapCount: this.lapCount,
+      checkpointPerLap: this.checkpointPerLap,
+      players: Array.from(this.players.values(), clonePlayerState),
+      standings: this.getStandings(),
+    };
+  }
+
+  _getPlayer(playerId) {
+    const player = this.players.get(playerId);
+    if (!player) throw new Error(`unknown player: ${playerId}`);
+    return player;
+  }
+
+  _resetProgress() {
+    this.elapsedSeconds = 0;
+    this.finishCounter = 0;
+    for (const player of this.players.values()) {
+      player.completedLaps = 0;
+      player.nextCheckpointIndex = 0;
+      player.finished = false;
+      player.finishOrder = null;
+      player.finishTimeSeconds = null;
+    }
+  }
+
+  _queueEvent(event) {
+    this._events.push(event);
+  }
+
+  _clearEvents() {
+    this._events = [];
+  }
+
+  _drainEvents() {
+    const events = this._events;
+    this._events = [];
+    return events;
+  }
+
+  _stepCountdown(deltaSeconds) {
+    this.countdownSeconds = Math.max(0, this.countdownSeconds - deltaSeconds);
+    if (this.countdownSeconds &gt; 0) return;
+
+    this.raceState = RACE_STATES.STARTED;
+    this._queueEvent({ type: RACE_CHECKPOINT_LAP_EVENTS.RACE_STARTED });
+  }
+
+  _stepPlayer(player) {
+    if (player.finished) return;
+
+    const checkpoint = this.checkpoints[player.nextCheckpointIndex];
+    if (distanceSquared(player.position, checkpoint.position) &gt; checkpoint.radius * checkpoint.radius) {
+      return;
+    }
+
+    this._queueEvent({
+      type: RACE_CHECKPOINT_LAP_EVENTS.CHECKPOINT_PASSED,
+      playerId: player.playerId,
+      checkpointId: checkpoint.id,
+      checkpointIndex: player.nextCheckpointIndex,
+      lap: player.completedLaps + 1,
+    });
+
+    player.nextCheckpointIndex += 1;
+    if (player.nextCheckpointIndex &lt; this.checkpointPerLap) return;
+
+    player.nextCheckpointIndex = 0;
+    player.completedLaps += 1;
+    this._queueEvent({
+      type: RACE_CHECKPOINT_LAP_EVENTS.LAP_COMPLETED,
+      playerId: player.playerId,
+      lap: player.completedLaps,
+      remainingLaps: this.lapCount - player.completedLaps,
+    });
+
+    if (player.completedLaps &lt; this.lapCount) return;
+
+    this.finishCounter += 1;
+    player.finished = true;
+    player.finishOrder = this.finishCounter;
+    player.finishTimeSeconds = this.elapsedSeconds;
+    this._queueEvent({
+      type: RACE_CHECKPOINT_LAP_EVENTS.PLAYER_FINISHED,
+      playerId: player.playerId,
+      finishOrder: player.finishOrder,
+      finishTimeSeconds: player.finishTimeSeconds,
+    });
+  }
+
+  step(deltaSeconds = 1 / 60) {
+    let raceDeltaSeconds = deltaSeconds;
+    if (this.raceState === RACE_STATES.STARTING) {
+      const countdownBeforeStep = this.countdownSeconds;
+      this._stepCountdown(deltaSeconds);
+      raceDeltaSeconds = Math.max(0, deltaSeconds - countdownBeforeStep);
+    }
+    if (this.raceState === RACE_STATES.STARTED) {
+      this.elapsedSeconds += raceDeltaSeconds;
+      for (const player of this.players.values()) {
+        this._stepPlayer(player);
+      }
+      this._finishRaceIfComplete();
+    }
+    return this._drainEvents();
+  }
+
+  _finishRaceIfComplete() {
+    if (this.raceState !== RACE_STATES.STARTED || this.players.size === 0) return;
+    for (const player of this.players.values()) {
+      if (!player.finished) return;
+    }
+    this.raceState = RACE_STATES.FINISHED;
+    this._queueEvent({
+      type: RACE_CHECKPOINT_LAP_EVENTS.RACE_FINISHED,
+      elapsedSeconds: this.elapsedSeconds,
+    });
+  }
+}
+</code></pre></div></section></main><footer><div class="wrap"><div class="foot-in"><div class="foot-brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></div><div class="foot-links"><a href="/GameBox/ja/modules/">モジュール</a><a href="/GameBox/ja/#how">使い方</a><a href="/GameBox/ja/#install">導入</a><a href="https://github.com/shushuitie2017/GameBox" target="_blank" rel="noopener">GitHub</a></div><div class="foot-note">GameBox · MIT License · コーディングエージェント向けブラウザ 3D ゲームの部品</div></div></div></footer><script src="/GameBox/static/app.js"></script></body></html>

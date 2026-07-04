@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="importmap">{"imports":{"three":"/GameBox/static/vendor/three.module.js"}}</script><title>WaypointDriver — GameBox</title><meta name="description" content="Converts waypoint, vehicle pose, speed, and corner profile into AI vehicle controls, including throttle, reverse, brake, left/right steering, and boost."><link rel="canonical" href="https://shushuitie2017.github.io/GameBox/en/modules/WaypointDriver.html"><link rel="alternate" hreflang="en" href="https://shushuitie2017.github.io/GameBox/en/modules/WaypointDriver.html"><link rel="alternate" hreflang="zh" href="https://shushuitie2017.github.io/GameBox/zh/modules/WaypointDriver.html"><link rel="alternate" hreflang="ja" href="https://shushuitie2017.github.io/GameBox/ja/modules/WaypointDriver.html"><link rel="alternate" hreflang="x-default" href="https://shushuitie2017.github.io/GameBox/en/modules/WaypointDriver.html"><meta property="og:type" content="website"><meta property="og:site_name" content="GameBox"><meta property="og:title" content="WaypointDriver — GameBox"><meta property="og:description" content="Converts waypoint, vehicle pose, speed, and corner profile into AI vehicle controls, including throttle, reverse, brake, left/right steering, and boost."><meta property="og:url" content="https://shushuitie2017.github.io/GameBox/en/modules/WaypointDriver.html"><meta property="og:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="WaypointDriver — GameBox"><meta name="twitter:description" content="Converts waypoint, vehicle pose, speed, and corner profile into AI vehicle controls, including throttle, reverse, brake, left/right steering, and boost."><meta name="twitter:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "GameBox", "url": "https://shushuitie2017.github.io/GameBox/en/modules/WaypointDriver.html", "description": "Converts waypoint, vehicle pose, speed, and corner profile into AI vehicle controls, including throttle, reverse, brake, left/right steering, and boost.", "inLanguage": "en"}</script><link rel="icon" href="/GameBox/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/GameBox/static/style.css"></head><body><div class="bg"></div><nav><div class="nav-in"><a href="/GameBox/en/" class="brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></a><div class="nav-links"><a href="/GameBox/en/modules/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 2 2 7l10 5 10-5L12 2Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Modules</a><a href="/GameBox/en/demos/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M9 9l4 3-4 3z"/></svg>Demos</a><a href="/GameBox/en/#how" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>How it works</a><a href="/GameBox/en/#install" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>Install</a></div><div class="nav-right"><details class="lang-dd"><summary class="ls-sum"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg><span>English</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.7"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ls-panel"><a href="/GameBox/en/modules/WaypointDriver.html" class="ls-item on">English<span class="ls-chk">✓</span></a><a href="/GameBox/zh/modules/WaypointDriver.html" class="ls-item">中文</a><a href="/GameBox/ja/modules/WaypointDriver.html" class="ls-item">日本語</a></div></details><script>try{localStorage.setItem('gbx_lang','en')}catch(e){}</script><a href="https://github.com/shushuitie2017/GameBox" class="nav-cta" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a></div></div></nav><header class="phead"><div class="wrap"><div class="crumb"><a href="/GameBox/en/">Home</a> / <a href="/GameBox/en/modules/">Modules</a> / <a href="/GameBox/en/modules/#cat-behavior">Behavior</a> / WaypointDriver</div><div class="mtitle-row"><h1 class="ptitle mono">WaypointDriver</h1><span class="tier tier-pure">Pure logic</span></div><p class="psub">Converts waypoint, vehicle pose, speed, and corner profile into AI vehicle controls, including throttle, reverse, brake, left/right steering, and boost.</p></div></header><main class="wrap narrow module-body"><div class="meta-grid"><div class="meta-row"><span class="mk">Category</span><span class="mv">Behavior</span></div><div class="meta-row"><span class="mk">Dependency tier</span><span class="mv"><span class="tier tier-pure">Pure logic</span></span></div><div class="meta-row"><span class="mk">Internal deps</span><span class="mv"><a href="/GameBox/en/modules/ScalarUtils.html" class="pill">ScalarUtils</a><a href="/GameBox/en/modules/WorldBasis.html" class="pill">WorldBasis</a></span></div><div class="meta-row"><span class="mk">Related modules</span><span class="mv"><span class="muted">none</span></span></div><div class="meta-row"><span class="mk">Demo scene</span><span class="mv"><code>pathfinding</code> · <a class="pill" href="/GameBox/en/demos/">Pathfinding ↓</a></span></div></div><div class="getthis"><div class="gt-head"><b>Take just this module</b><button class="copy-path" data-copy="modules/behavior/WaypointDriver.js">Copy relative path</button></div><code class="gt-path">modules/behavior/WaypointDriver.js</code><p class="sub">Copy it together with its internal dependencies, preserving the relative directory structure.</p></div><section class="mod-demo"><div class="src-head"><h2 class="sh">Pathfinding</h2><span class="tier tier-pure">Pure logic</span></div><div class="demo-stage" style="aspect-ratio:16/9"><div class="demo-canvas" id="demo-pathfinding"></div><script type="module">import{mount}from"/GameBox/static/demos/pathfinding.js";mount(document.getElementById("demo-pathfinding"),{interactive:true});</script></div><p class="demo-controls">Click to move the goal · Shift-click to toggle walls.</p></section><section class="source"><div class="src-head"><h2 class="sh">Source</h2><button class="copy">Copy source</button></div><div class="code code-src"><pre><code>import { clamp } from '../math/ScalarUtils.js';
+import { DEFAULT_WORLD_BASIS } from '../math/WorldBasis.js';
+
+const EPS = 1e-6;
+
+function resolveForward(yaw, basis) {
+  const forward = basis.yawPitchRollFrame(yaw).forward;
+  const planar = basis.toPlanar(forward);
+  const len = Math.hypot(planar.right, planar.forward);
+  if (len &gt; EPS) {
+    return { right: planar.right / len, forward: planar.forward / len };
+  }
+  return { right: 0, forward: 0 };
+}
+
+function directionToTarget(from, target, basis = DEFAULT_WORLD_BASIS) {
+  const delta = basis.planarDelta(target, from);
+  const dRight = delta.right;
+  const dForward = delta.forward;
+  const len = Math.hypot(dRight, dForward);
+  if (len &lt; EPS) return { right: 0, forward: 0, len: 0 };
+  return { right: dRight / len, forward: dForward / len, len };
+}
+
+function signedYawError(forward, desired) {
+  const dot = clamp(
+    forward.right * desired.right + forward.forward * desired.forward,
+    -1,
+    1
+  );
+  const rightTurnCross = forward.forward * desired.right - forward.right * desired.forward;
+  const angle = Math.acos(dot);
+  return angle * Math.sign(rightTurnCross || 1);
+}
+
+function neutralControls() {
+  return {
+    throttle: false,
+    reverse: false,
+    left: false,
+    right: false,
+    brake: true,
+    boost: false,
+  };
+}
+
+export class WaypointDriver {
+  constructor({
+    targetSpeed = 32,
+    minSpeed = 4,
+    cornerSlowdown = 16,
+    steerGain = 2.4,
+    steerDeadzone = 0.12,
+    brakeYawThreshold = 0.88,
+    accelerateSpeedError = 0.4,
+    brakeSpeedError = -0.9,
+    stuckSpeed = 0.35,
+    stuckYawThreshold = 1.35,
+    stuckTimeMs = 900,
+    reverseTimeMs = 420,
+    basis = DEFAULT_WORLD_BASIS
+  }) {
+    this.targetSpeed = targetSpeed;
+    this.minSpeed = minSpeed;
+    this.cornerSlowdown = cornerSlowdown;
+    this.steerGain = steerGain;
+    this.steerDeadzone = steerDeadzone;
+    this.brakeYawThreshold = brakeYawThreshold;
+    this.accelerateSpeedError = accelerateSpeedError;
+    this.brakeSpeedError = brakeSpeedError;
+
+    this.stuckSpeed = stuckSpeed;
+    this.stuckYawThreshold = stuckYawThreshold;
+    this.stuckTimeMs = stuckTimeMs;
+    this.reverseTimeMs = reverseTimeMs;
+    this.basis = basis;
+
+    this.stuckMs = 0;
+    this.reverseRemainingMs = 0;
+    this.last = null;
+  }
+
+  reset() {
+    this.stuckMs = 0;
+    this.reverseRemainingMs = 0;
+    this.last = null;
+  }
+
+  step({
+    position = null,
+    yaw = 0,
+    speed = 0,
+    waypoint = null,
+    cornerMagnitude = 0,
+    steerBias = 0,
+    raceStarted = true,
+    deltaSeconds = 1 / 60,
+  }) {
+    const dtMs = Math.max(0, deltaSeconds * 1000);
+
+    if (raceStarted === false || !waypoint || !position) {
+      const controls = neutralControls();
+      this.last = {
+        ...controls,
+        desiredSpeed: 0,
+        yawError: 0,
+        speedError: 0,
+        steerIntent: 0,
+      };
+      return this.last;
+    }
+
+    const forward = resolveForward(yaw, this.basis);
+    const toTarget = directionToTarget(position, waypoint, this.basis);
+
+    if (toTarget.len &lt; EPS) {
+      const controls = neutralControls();
+      this.last = {
+        ...controls,
+        desiredSpeed: 0,
+        yawError: 0,
+        speedError: 0,
+        steerIntent: 0,
+      };
+      return this.last;
+    }
+
+    const yawError = signedYawError(forward, toTarget);
+    const steerIntent = clamp(yawError * this.steerGain + steerBias, -1, 1);
+
+    const cornerPenalty = cornerMagnitude * this.cornerSlowdown;
+    const desiredSpeed = clamp(
+      this.targetSpeed - cornerPenalty,
+      this.minSpeed,
+      this.targetSpeed
+    );
+
+    const speedError = desiredSpeed - speed;
+
+    const stuck = speed &lt;= this.stuckSpeed &amp;&amp; Math.abs(yawError) &gt;= this.stuckYawThreshold;
+    if (stuck) {
+      this.stuckMs += dtMs;
+      if (this.stuckMs &gt;= this.stuckTimeMs) {
+        this.reverseRemainingMs = this.reverseTimeMs;
+        this.stuckMs = 0;
+      }
+    } else {
+      this.stuckMs = Math.max(0, this.stuckMs - dtMs * 2);
+    }
+
+    if (this.reverseRemainingMs &gt; 0) {
+      this.reverseRemainingMs = Math.max(0, this.reverseRemainingMs - dtMs);
+      const controls = {
+        throttle: false,
+        reverse: true,
+        left: steerIntent &gt; this.steerDeadzone,
+        right: steerIntent &lt; -this.steerDeadzone,
+        brake: false,
+        boost: false,
+      };
+      this.last = {
+        ...controls,
+        desiredSpeed,
+        yawError,
+        speedError,
+        steerIntent,
+      };
+      return this.last;
+    }
+
+    const shouldBrakeForTurn = Math.abs(yawError) &gt;= this.brakeYawThreshold &amp;&amp; speed &gt; desiredSpeed * 0.7;
+    const shouldBrakeForSpeed = speedError &lt;= this.brakeSpeedError;
+
+    const brake = shouldBrakeForTurn || shouldBrakeForSpeed;
+
+    const throttleDrive = speedError &gt;= this.accelerateSpeedError &amp;&amp; !brake;
+
+    const controls = {
+      throttle: throttleDrive,
+      reverse: false,
+      left: steerIntent &lt; -this.steerDeadzone,
+      right: steerIntent &gt; this.steerDeadzone,
+      brake,
+      boost: throttleDrive &amp;&amp; Math.abs(steerIntent) &lt; 0.15,
+    };
+
+    this.last = {
+      ...controls,
+      desiredSpeed,
+      yawError,
+      speedError,
+      steerIntent,
+    };
+
+    return this.last;
+  }
+}
+</code></pre></div></section></main><footer><div class="wrap"><div class="foot-in"><div class="foot-brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></div><div class="foot-links"><a href="/GameBox/en/modules/">Modules</a><a href="/GameBox/en/#how">How it works</a><a href="/GameBox/en/#install">Install</a><a href="https://github.com/shushuitie2017/GameBox" target="_blank" rel="noopener">GitHub</a></div><div class="foot-note">GameBox · MIT License · Browser 3D game building blocks for coding agents</div></div></div></footer><script src="/GameBox/static/app.js"></script></body></html>

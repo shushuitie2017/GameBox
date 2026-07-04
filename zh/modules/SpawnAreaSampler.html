@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="importmap">{"imports":{"three":"/GameBox/static/vendor/three.module.js"}}</script><title>SpawnAreaSampler — GameBox</title><meta name="description" content="在可选允许区域内采样平面出生点、排除阻挡区，支持矩形/圆/多边形/走廊形状契约。"><link rel="canonical" href="https://shushuitie2017.github.io/GameBox/zh/modules/SpawnAreaSampler.html"><link rel="alternate" hreflang="en" href="https://shushuitie2017.github.io/GameBox/en/modules/SpawnAreaSampler.html"><link rel="alternate" hreflang="zh" href="https://shushuitie2017.github.io/GameBox/zh/modules/SpawnAreaSampler.html"><link rel="alternate" hreflang="ja" href="https://shushuitie2017.github.io/GameBox/ja/modules/SpawnAreaSampler.html"><link rel="alternate" hreflang="x-default" href="https://shushuitie2017.github.io/GameBox/en/modules/SpawnAreaSampler.html"><meta property="og:type" content="website"><meta property="og:site_name" content="GameBox"><meta property="og:title" content="SpawnAreaSampler — GameBox"><meta property="og:description" content="在可选允许区域内采样平面出生点、排除阻挡区，支持矩形/圆/多边形/走廊形状契约。"><meta property="og:url" content="https://shushuitie2017.github.io/GameBox/zh/modules/SpawnAreaSampler.html"><meta property="og:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="SpawnAreaSampler — GameBox"><meta name="twitter:description" content="在可选允许区域内采样平面出生点、排除阻挡区，支持矩形/圆/多边形/走廊形状契约。"><meta name="twitter:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "GameBox", "url": "https://shushuitie2017.github.io/GameBox/zh/modules/SpawnAreaSampler.html", "description": "在可选允许区域内采样平面出生点、排除阻挡区，支持矩形/圆/多边形/走廊形状契约。", "inLanguage": "zh-CN"}</script><link rel="icon" href="/GameBox/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/GameBox/static/style.css"></head><body><div class="bg"></div><nav><div class="nav-in"><a href="/GameBox/zh/" class="brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></a><div class="nav-links"><a href="/GameBox/zh/modules/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 2 2 7l10 5 10-5L12 2Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>模块目录</a><a href="/GameBox/zh/demos/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M9 9l4 3-4 3z"/></svg>演示场</a><a href="/GameBox/zh/#how" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>如何使用</a><a href="/GameBox/zh/#install" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>安装</a></div><div class="nav-right"><details class="lang-dd"><summary class="ls-sum"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg><span>中文</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.7"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ls-panel"><a href="/GameBox/en/modules/SpawnAreaSampler.html" class="ls-item">English</a><a href="/GameBox/zh/modules/SpawnAreaSampler.html" class="ls-item on">中文<span class="ls-chk">✓</span></a><a href="/GameBox/ja/modules/SpawnAreaSampler.html" class="ls-item">日本語</a></div></details><script>try{localStorage.setItem('gbx_lang','zh')}catch(e){}</script><a href="https://github.com/shushuitie2017/GameBox" class="nav-cta" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a></div></div></nav><header class="phead"><div class="wrap"><div class="crumb"><a href="/GameBox/zh/">首页</a> / <a href="/GameBox/zh/modules/">模块目录</a> / <a href="/GameBox/zh/modules/#cat-world">世界 / 环境 / 视觉</a> / SpawnAreaSampler</div><div class="mtitle-row"><h1 class="ptitle mono">SpawnAreaSampler</h1><span class="tier tier-pure">纯逻辑</span></div><p class="psub">在可选允许区域内采样平面出生点、排除阻挡区，支持矩形/圆/多边形/走廊形状契约。</p></div></header><main class="wrap narrow module-body"><div class="meta-grid"><div class="meta-row"><span class="mk">类别</span><span class="mv">世界 / 环境 / 视觉</span></div><div class="meta-row"><span class="mk">依赖档位</span><span class="mv"><span class="tier tier-pure">纯逻辑</span></span></div><div class="meta-row"><span class="mk">内部依赖</span><span class="mv"><span class="muted">无</span></span></div><div class="meta-row"><span class="mk">相关模块</span><span class="mv"><span class="muted">无</span></span></div></div><div class="getthis"><div class="gt-head"><b>只取这个模块</b><button class="copy-path" data-copy="modules/world/environment/SpawnAreaSampler.js">复制相对路径</button></div><code class="gt-path">modules/world/environment/SpawnAreaSampler.js</code><p class="sub">连同其内部依赖一并复制，保留相对目录结构。</p></div><section class="source"><div class="src-head"><h2 class="sh">源码</h2><button class="copy">复制源码</button></div><div class="code code-src"><pre><code>const DEFAULT_MAX_ATTEMPTS = 40;
+
+export const SPAWN_REGION_TYPES = Object.freeze({
+  RECT: 'rect',
+  CIRCLE: 'circle',
+  POLYGON: 'polygon',
+  SEGMENT_CORRIDOR: 'segmentCorridor',
+});
+
+function distanceSqPointToSegment(point, start, end) {
+  const deltaRight = end.right - start.right;
+  const deltaForward = end.forward - start.forward;
+  const lengthSq = deltaRight * deltaRight + deltaForward * deltaForward;
+
+  if (lengthSq === 0) {
+    const right = point.right - start.right;
+    const forward = point.forward - start.forward;
+    return right * right + forward * forward;
+  }
+
+  const t = Math.max(0, Math.min(1, (
+    (point.right - start.right) * deltaRight
+    + (point.forward - start.forward) * deltaForward
+  ) / lengthSq));
+  const right = point.right - (start.right + deltaRight * t);
+  const forward = point.forward - (start.forward + deltaForward * t);
+  return right * right + forward * forward;
+}
+
+function pointInPolygon(point, points) {
+  let inside = false;
+  for (let i = 0, j = points.length - 1; i &lt; points.length; j = i, i += 1) {
+    const a = points[i];
+    const b = points[j];
+    if ((a.forward &gt; point.forward) === (b.forward &gt; point.forward)) continue;
+
+    const edgeRight = a.right + (
+      (point.forward - a.forward) * (b.right - a.right)
+    ) / (b.forward - a.forward);
+    if (point.right &lt; edgeRight) inside = !inside;
+  }
+  return inside;
+}
+
+function pointInRegion(point, region, padding = 0) {
+  if (region.type === SPAWN_REGION_TYPES.RECT) {
+    const halfRight = region.size.right * 0.5 + padding;
+    const halfForward = region.size.forward * 0.5 + padding;
+    return halfRight &gt;= 0
+      &amp;&amp; halfForward &gt;= 0
+      &amp;&amp; Math.abs(point.right - region.center.right) &lt;= halfRight
+      &amp;&amp; Math.abs(point.forward - region.center.forward) &lt;= halfForward;
+  }
+
+  if (region.type === SPAWN_REGION_TYPES.CIRCLE) {
+    const radius = region.radius + padding;
+    const right = point.right - region.center.right;
+    const forward = point.forward - region.center.forward;
+    return radius &gt;= 0 &amp;&amp; right * right + forward * forward &lt;= radius * radius;
+  }
+
+  if (region.type === SPAWN_REGION_TYPES.POLYGON) {
+    return pointInPolygon(point, region.points);
+  }
+
+  if (region.type === SPAWN_REGION_TYPES.SEGMENT_CORRIDOR) {
+    const halfWidth = region.halfWidth + padding;
+    return halfWidth &gt;= 0 &amp;&amp; region.segments.some(({ start, end }) =&gt; (
+      distanceSqPointToSegment(point, start, end) &lt;= halfWidth * halfWidth
+    ));
+  }
+
+  return false;
+}
+
+function pointAllowed(point, {
+  radius = 0,
+  spawnRegions = [],
+  blockRegions = [],
+}) {
+  const inSpawnRegion = spawnRegions.length === 0
+    || spawnRegions.some((region) =&gt; pointInRegion(point, region, -radius));
+
+  return inSpawnRegion &amp;&amp; !blockRegions.some((region) =&gt; (
+    pointInRegion(point, region, radius + (region.clearance ?? 0))
+  ));
+}
+
+function addPoint(bounds, point) {
+  bounds.rightMin = Math.min(bounds.rightMin, point.right);
+  bounds.rightMax = Math.max(bounds.rightMax, point.right);
+  bounds.forwardMin = Math.min(bounds.forwardMin, point.forward);
+  bounds.forwardMax = Math.max(bounds.forwardMax, point.forward);
+}
+
+function addRegion(bounds, region) {
+  if (region.type === SPAWN_REGION_TYPES.RECT) {
+    addPoint(bounds, {
+      right: region.center.right - region.size.right * 0.5,
+      forward: region.center.forward - region.size.forward * 0.5,
+    });
+    addPoint(bounds, {
+      right: region.center.right + region.size.right * 0.5,
+      forward: region.center.forward + region.size.forward * 0.5,
+    });
+    return;
+  }
+
+  if (region.type === SPAWN_REGION_TYPES.CIRCLE) {
+    addPoint(bounds, {
+      right: region.center.right - region.radius,
+      forward: region.center.forward - region.radius,
+    });
+    addPoint(bounds, {
+      right: region.center.right + region.radius,
+      forward: region.center.forward + region.radius,
+    });
+    return;
+  }
+
+  if (region.type === SPAWN_REGION_TYPES.POLYGON) {
+    for (const point of region.points) addPoint(bounds, point);
+    return;
+  }
+
+  if (region.type === SPAWN_REGION_TYPES.SEGMENT_CORRIDOR) {
+    for (const { start, end } of region.segments) {
+      addPoint(bounds, { right: start.right - region.halfWidth, forward: start.forward - region.halfWidth });
+      addPoint(bounds, { right: start.right + region.halfWidth, forward: start.forward + region.halfWidth });
+      addPoint(bounds, { right: end.right - region.halfWidth, forward: end.forward - region.halfWidth });
+      addPoint(bounds, { right: end.right + region.halfWidth, forward: end.forward + region.halfWidth });
+    }
+    return;
+  }
+}
+
+function boundsForRegions(regions) {
+  if (regions.length === 0) return null;
+
+  const bounds = {
+    rightMin: Infinity,
+    rightMax: -Infinity,
+    forwardMin: Infinity,
+    forwardMax: -Infinity,
+  };
+  for (const region of regions) addRegion(bounds, region);
+  return bounds;
+}
+
+function samplePoint(prng, bounds) {
+  return {
+    right: prng.uniform(bounds.rightMin, bounds.rightMax),
+    forward: prng.uniform(bounds.forwardMin, bounds.forwardMax),
+  };
+}
+
+export class SpawnAreaSampler {
+  constructor({
+    bounds,
+    spawnRegions = [],
+    blockRegions = [],
+    maxAttempts = DEFAULT_MAX_ATTEMPTS,
+  }) {
+    this.bounds = bounds;
+    this.spawnRegions = spawnRegions;
+    this.blockRegions = blockRegions;
+    this.maxAttempts = maxAttempts;
+    this.sampleBounds = boundsForRegions(spawnRegions) ?? bounds;
+  }
+
+  allows(point, radius = 0) {
+    return pointAllowed(point, {
+      radius,
+      spawnRegions: this.spawnRegions,
+      blockRegions: this.blockRegions,
+    });
+  }
+
+  sample(prng, radius = 0) {
+    for (let attempt = 0; attempt &lt; this.maxAttempts; attempt += 1) {
+      const point = samplePoint(prng, this.sampleBounds);
+      if (this.allows(point, radius)) return point;
+    }
+    return null;
+  }
+}
+</code></pre></div></section></main><footer><div class="wrap"><div class="foot-in"><div class="foot-brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></div><div class="foot-links"><a href="/GameBox/zh/modules/">模块目录</a><a href="/GameBox/zh/#how">如何使用</a><a href="/GameBox/zh/#install">安装</a><a href="https://github.com/shushuitie2017/GameBox" target="_blank" rel="noopener">GitHub</a></div><div class="foot-note">GameBox · MIT License · 面向编码代理的浏览器 3D 游戏积木</div></div></div></footer><script src="/GameBox/static/app.js"></script></body></html>

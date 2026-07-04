@@ -1,0 +1,547 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="importmap">{"imports":{"three":"/GameBox/static/vendor/three.module.js"}}</script><title>FlightHud — GameBox</title><meta name="description" content="Renders flight, weapon, navigation, scoring, and warning state as a cockpit-style HUD."><link rel="canonical" href="https://shushuitie2017.github.io/GameBox/en/modules/FlightHud.html"><link rel="alternate" hreflang="en" href="https://shushuitie2017.github.io/GameBox/en/modules/FlightHud.html"><link rel="alternate" hreflang="zh" href="https://shushuitie2017.github.io/GameBox/zh/modules/FlightHud.html"><link rel="alternate" hreflang="ja" href="https://shushuitie2017.github.io/GameBox/ja/modules/FlightHud.html"><link rel="alternate" hreflang="x-default" href="https://shushuitie2017.github.io/GameBox/en/modules/FlightHud.html"><meta property="og:type" content="website"><meta property="og:site_name" content="GameBox"><meta property="og:title" content="FlightHud — GameBox"><meta property="og:description" content="Renders flight, weapon, navigation, scoring, and warning state as a cockpit-style HUD."><meta property="og:url" content="https://shushuitie2017.github.io/GameBox/en/modules/FlightHud.html"><meta property="og:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="FlightHud — GameBox"><meta name="twitter:description" content="Renders flight, weapon, navigation, scoring, and warning state as a cockpit-style HUD."><meta name="twitter:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "GameBox", "url": "https://shushuitie2017.github.io/GameBox/en/modules/FlightHud.html", "description": "Renders flight, weapon, navigation, scoring, and warning state as a cockpit-style HUD.", "inLanguage": "en"}</script><link rel="icon" href="/GameBox/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/GameBox/static/style.css"></head><body><div class="bg"></div><nav><div class="nav-in"><a href="/GameBox/en/" class="brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></a><div class="nav-links"><a href="/GameBox/en/modules/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 2 2 7l10 5 10-5L12 2Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Modules</a><a href="/GameBox/en/demos/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M9 9l4 3-4 3z"/></svg>Demos</a><a href="/GameBox/en/#how" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>How it works</a><a href="/GameBox/en/#install" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>Install</a></div><div class="nav-right"><details class="lang-dd"><summary class="ls-sum"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg><span>English</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.7"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ls-panel"><a href="/GameBox/en/modules/FlightHud.html" class="ls-item on">English<span class="ls-chk">✓</span></a><a href="/GameBox/zh/modules/FlightHud.html" class="ls-item">中文</a><a href="/GameBox/ja/modules/FlightHud.html" class="ls-item">日本語</a></div></details><script>try{localStorage.setItem('gbx_lang','en')}catch(e){}</script><a href="https://github.com/shushuitie2017/GameBox" class="nav-cta" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a></div></div></nav><header class="phead"><div class="wrap"><div class="crumb"><a href="/GameBox/en/">Home</a> / <a href="/GameBox/en/modules/">Modules</a> / <a href="/GameBox/en/modules/#cat-user-interface">User Interface</a> / FlightHud</div><div class="mtitle-row"><h1 class="ptitle mono">FlightHud</h1><span class="tier tier-pure">Pure logic</span></div><p class="psub">Renders flight, weapon, navigation, scoring, and warning state as a cockpit-style HUD.</p></div></header><main class="wrap narrow module-body"><div class="meta-grid"><div class="meta-row"><span class="mk">Category</span><span class="mv">User Interface</span></div><div class="meta-row"><span class="mk">Dependency tier</span><span class="mv"><span class="tier tier-pure">Pure logic</span></span></div><div class="meta-row"><span class="mk">Internal deps</span><span class="mv"><a href="/GameBox/en/modules/ScalarUtils.html" class="pill">ScalarUtils</a></span></div><div class="meta-row"><span class="mk">Related modules</span><span class="mv"><span class="muted">none</span></span></div><div class="meta-row"><span class="mk">Demo scene</span><span class="mv"><code>flight</code> · <i class="muted">Featured in this demo scene (coming soon)</i></span></div></div><div class="getthis"><div class="gt-head"><b>Take just this module</b><button class="copy-path" data-copy="modules/user-interface/FlightHud.js">Copy relative path</button></div><code class="gt-path">modules/user-interface/FlightHud.js</code><p class="sub">Copy it together with its internal dependencies, preserving the relative directory structure.</p></div><section class="source"><div class="src-head"><h2 class="sh">Source</h2><button class="copy">Copy source</button></div><div class="code code-src"><pre><code>import { clamp, toFinite } from '../math/ScalarUtils.js';
+
+const STYLE_ID = 'fighter-hud-styles';
+
+function getElement(id) {
+	return typeof document !== 'undefined' ? document.getElementById(id) : null;
+}
+
+function setText(element, value) {
+	if (element) element.textContent = String(value ?? '');
+}
+
+function padNumber(value, width) {
+	return String(Math.abs(Math.round(Number(value) || 0))).padStart(width, '0');
+}
+
+function normalizeCompassHeadingDegrees(compassHeadingDegrees = 0) {
+	const numericCompassHeading = Number(compassHeadingDegrees);
+	if (!Number.isFinite(numericCompassHeading)) return 0;
+	return ((numericCompassHeading % 360) + 360) % 360;
+}
+
+function cardinalForCompassHeadingDegrees(compassHeadingDegrees = 0) {
+	const wrapped = normalizeCompassHeadingDegrees(compassHeadingDegrees);
+	if (wrapped &gt;= 337.5 || wrapped &lt; 22.5) return 'N';
+	if (wrapped &lt; 67.5) return 'NE';
+	if (wrapped &lt; 112.5) return 'E';
+	if (wrapped &lt; 157.5) return 'SE';
+	if (wrapped &lt; 202.5) return 'S';
+	if (wrapped &lt; 247.5) return 'SW';
+	if (wrapped &lt; 292.5) return 'W';
+	return 'NW';
+}
+
+function installStyles() {
+	if (typeof document === 'undefined' || document.getElementById(STYLE_ID)) return;
+
+	const style = document.createElement('style');
+	style.id = STYLE_ID;
+	style.textContent = `
+		#hud.flight-fighter-hud {
+			inset: 0;
+			width: auto;
+			padding: 0;
+			color: #7dffb7;
+			background: transparent;
+			border: 0;
+			box-shadow: none;
+			backdrop-filter: none;
+			pointer-events: none;
+			text-shadow: 0 0 8px rgba(75, 255, 170, 0.54);
+		}
+
+		.flight-fighter-hud__overlay {
+			position: fixed;
+			inset: 0;
+			z-index: 12;
+			overflow: hidden;
+			font-family: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.flight-fighter-hud__horizon {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: min(72vw, 760px);
+			height: min(58vh, 520px);
+			transform: translate(-50%, -50%);
+			overflow: hidden;
+		}
+
+		.flight-fighter-hud__pitch {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 620px;
+			height: 880px;
+			transform-origin: center center;
+			will-change: transform;
+		}
+
+		.flight-fighter-hud__pitch-line {
+			position: absolute;
+			left: 50%;
+			width: 210px;
+			height: 1px;
+			background: rgba(125, 255, 183, 0.72);
+			transform: translateX(-50%);
+		}
+
+		.flight-fighter-hud__pitch-line.zero {
+			width: 330px;
+			height: 2px;
+			background: rgba(125, 255, 183, 0.92);
+		}
+
+		.flight-fighter-hud__pitch-line.negative {
+			background: repeating-linear-gradient(
+				to right,
+				rgba(125, 255, 183, 0.7) 0 18px,
+				transparent 18px 28px
+			);
+		}
+
+		.flight-fighter-hud__pitch-label {
+			position: absolute;
+			top: -9px;
+			font-size: 12px;
+			color: rgba(181, 255, 215, 0.86);
+		}
+
+		.flight-fighter-hud__pitch-label.left {
+			left: -48px;
+		}
+
+		.flight-fighter-hud__pitch-label.right {
+			right: -48px;
+		}
+
+		.flight-fighter-hud__reticle {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 148px;
+			height: 148px;
+			transform: translate(-50%, -50%);
+			border: 2px solid rgba(125, 255, 183, 0.9);
+			border-radius: 50%;
+			box-shadow: 0 0 18px rgba(74, 255, 167, 0.2);
+		}
+
+		.flight-fighter-hud__reticle::before,
+		.flight-fighter-hud__reticle::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			width: 64px;
+			height: 2px;
+			background: rgba(125, 255, 183, 0.9);
+		}
+
+		.flight-fighter-hud__reticle::before {
+			right: 100%;
+			margin-right: 18px;
+		}
+
+		.flight-fighter-hud__reticle::after {
+			left: 100%;
+			margin-left: 18px;
+		}
+
+		.flight-fighter-hud__waterline {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 270px;
+			height: 38px;
+			transform: translate(-50%, -50%);
+		}
+
+		.flight-fighter-hud__waterline::before,
+		.flight-fighter-hud__waterline::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			width: 88px;
+			height: 18px;
+			border-top: 2px solid rgba(125, 255, 183, 0.84);
+		}
+
+		.flight-fighter-hud__waterline::before {
+			left: 0;
+			border-left: 2px solid rgba(125, 255, 183, 0.84);
+		}
+
+		.flight-fighter-hud__waterline::after {
+			right: 0;
+			border-right: 2px solid rgba(125, 255, 183, 0.84);
+		}
+
+		.flight-fighter-hud__dot {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 7px;
+			height: 7px;
+			transform: translate(-50%, -50%);
+			border-radius: 50%;
+			background: rgba(125, 255, 183, 0.95);
+		}
+
+		.flight-fighter-hud__boresight {
+			position: absolute;
+			left: 50%;
+			top: calc(50% - 112px);
+			width: 76px;
+			height: 28px;
+			transform: translateX(-50%);
+			border-top: 2px solid rgba(125, 255, 183, 0.8);
+			border-left: 2px solid rgba(125, 255, 183, 0.8);
+			border-right: 2px solid rgba(125, 255, 183, 0.8);
+		}
+
+		.flight-fighter-hud__roll-scale {
+			position: absolute;
+			left: 50%;
+			top: calc(50% - min(31vh, 285px));
+			width: 360px;
+			height: 82px;
+			transform: translateX(-50%);
+			border-top: 1px solid rgba(125, 255, 183, 0.58);
+			border-radius: 50% 50% 0 0;
+		}
+
+		.flight-fighter-hud__roll-pointer {
+			position: absolute;
+			left: 50%;
+			top: 18px;
+			width: 0;
+			height: 0;
+			transform: translateX(-50%);
+			border-left: 7px solid transparent;
+			border-right: 7px solid transparent;
+			border-top: 14px solid rgba(125, 255, 183, 0.95);
+		}
+
+		.flight-fighter-hud__compass-heading {
+			position: absolute;
+			left: 50%;
+			top: 18px;
+			min-width: 230px;
+			transform: translateX(-50%);
+			text-align: center;
+			font-size: 14px;
+		}
+
+		.flight-fighter-hud__compass-heading strong {
+			display: block;
+			font-size: 34px;
+			line-height: 1;
+			color: #d8ffe8;
+		}
+
+		.flight-fighter-hud__data {
+			position: absolute;
+			top: 19vh;
+			display: grid;
+			gap: 14px;
+			min-width: 156px;
+			font-size: 12px;
+		}
+
+		.flight-fighter-hud__data.left {
+			left: 7vw;
+		}
+
+		.flight-fighter-hud__data.right {
+			right: 7vw;
+			text-align: right;
+		}
+
+		.flight-fighter-hud__box {
+			padding: 8px 10px;
+			background: rgba(0, 18, 10, 0.22);
+			border: 1px solid rgba(125, 255, 183, 0.32);
+		}
+
+		.flight-fighter-hud__box span {
+			display: block;
+			color: rgba(183, 255, 217, 0.72);
+			font-size: 10px;
+		}
+
+		.flight-fighter-hud__box strong {
+			display: block;
+			margin-top: 2px;
+			color: #d8ffe8;
+			font-size: 25px;
+			line-height: 1.05;
+		}
+
+		.flight-fighter-hud__meter {
+			width: 100%;
+			height: 6px;
+			margin-top: 6px;
+			background: rgba(125, 255, 183, 0.16);
+		}
+
+		.flight-fighter-hud__meter-fill {
+			width: 0;
+			height: 100%;
+			background: rgba(125, 255, 183, 0.9);
+			box-shadow: 0 0 12px rgba(125, 255, 183, 0.4);
+		}
+
+		.flight-fighter-hud__status {
+			position: absolute;
+			left: 50%;
+			bottom: 96px;
+			width: min(76vw, 740px);
+			transform: translateX(-50%);
+			display: flex;
+			justify-content: space-between;
+			gap: 18px;
+			font-size: 12px;
+			color: rgba(216, 255, 232, 0.86);
+		}
+
+		.flight-fighter-hud__warning {
+			position: absolute;
+			left: 50%;
+			top: 28%;
+			transform: translateX(-50%);
+			display: none;
+			padding: 9px 18px;
+			color: #ffecec;
+			background: rgba(157, 10, 10, 0.78);
+			border: 1px solid rgba(255, 155, 155, 0.68);
+			font-size: 19px;
+			animation: fighterHudPulse 0.72s ease-in-out infinite;
+		}
+
+		.flight-fighter-hud__warning.active {
+			display: block;
+		}
+
+		@keyframes fighterHudPulse {
+			0%, 100% { opacity: 0.62; }
+			50% { opacity: 1; }
+		}
+
+		@media (max-width: 760px) {
+			.flight-fighter-hud__data {
+				top: auto;
+				bottom: 122px;
+				min-width: 126px;
+				font-size: 10px;
+			}
+
+			.flight-fighter-hud__data.left {
+				left: 12px;
+			}
+
+			.flight-fighter-hud__data.right {
+				right: 12px;
+			}
+
+			.flight-fighter-hud__box strong {
+				font-size: 19px;
+			}
+
+			.flight-fighter-hud__reticle {
+				width: 112px;
+				height: 112px;
+			}
+
+			.flight-fighter-hud__status {
+				bottom: 76px;
+				width: calc(100vw - 24px);
+				gap: 8px;
+				flex-wrap: wrap;
+				font-size: 10px;
+			}
+		}
+	`;
+	document.head.appendChild(style);
+}
+
+function createPitchLine(degrees) {
+	const line = document.createElement('div');
+	line.className = `flight-fighter-hud__pitch-line${degrees === 0 ? ' zero' : ''}${degrees &lt; 0 ? ' negative' : ''}`;
+	line.style.top = `${440 - degrees * 7}px`;
+
+	const labelText = String(Math.abs(degrees));
+	for (const side of ['left', 'right']) {
+		const label = document.createElement('span');
+		label.className = `flight-fighter-hud__pitch-label ${side}`;
+		label.textContent = labelText;
+		line.appendChild(label);
+	}
+
+	return line;
+}
+
+export class FlightHud {
+	constructor(root = getElement('hud')) {
+		this.root = root;
+		if (!this.root) {
+			throw new Error('FlightHud: #hud root is required');
+		}
+
+		installStyles();
+		this.root.classList.add('flight-fighter-hud');
+
+		this.state = {
+			pullUpWarning: false,
+		};
+
+		this.overlay = document.createElement('div');
+		this.overlay.className = 'flight-fighter-hud__overlay';
+		this.overlay.innerHTML = `
+			&lt;div class="flight-fighter-hud__compass-heading"&gt;
+				&lt;span&gt;HDG&lt;/span&gt;
+				&lt;strong data-hud="compassHeading"&gt;000&lt;/strong&gt;
+				&lt;span data-hud="cardinal"&gt;N&lt;/span&gt;
+			&lt;/div&gt;
+
+			&lt;div class="flight-fighter-hud__roll-scale"&gt;
+				&lt;div class="flight-fighter-hud__roll-pointer"&gt;&lt;/div&gt;
+			&lt;/div&gt;
+
+			&lt;div class="flight-fighter-hud__horizon"&gt;
+				&lt;div class="flight-fighter-hud__pitch" data-hud="pitchTape"&gt;&lt;/div&gt;
+				&lt;div class="flight-fighter-hud__boresight"&gt;&lt;/div&gt;
+				&lt;div class="flight-fighter-hud__reticle"&gt;
+					&lt;div class="flight-fighter-hud__dot"&gt;&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;div class="flight-fighter-hud__waterline"&gt;&lt;/div&gt;
+			&lt;/div&gt;
+
+			&lt;div class="flight-fighter-hud__data left"&gt;
+				&lt;div class="flight-fighter-hud__box"&gt;
+					&lt;span&gt;SPD&lt;/span&gt;
+					&lt;strong data-hud="speed"&gt;000&lt;/strong&gt;
+				&lt;/div&gt;
+				&lt;div class="flight-fighter-hud__box"&gt;
+					&lt;span&gt;THR&lt;/span&gt;
+					&lt;strong data-hud="throttle"&gt;000%&lt;/strong&gt;
+					&lt;div class="flight-fighter-hud__meter"&gt;&lt;div class="flight-fighter-hud__meter-fill" data-hud="throttleFill"&gt;&lt;/div&gt;&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;div class="flight-fighter-hud__box"&gt;
+					&lt;span&gt;AOA / ROLL&lt;/span&gt;
+					&lt;strong data-hud="attitude"&gt;+0 / +0&lt;/strong&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+
+			&lt;div class="flight-fighter-hud__data right"&gt;
+				&lt;div class="flight-fighter-hud__box"&gt;
+					&lt;span&gt;ALT&lt;/span&gt;
+					&lt;strong data-hud="altitude"&gt;000&lt;/strong&gt;
+				&lt;/div&gt;
+				&lt;div class="flight-fighter-hud__box"&gt;
+					&lt;span&gt;AGL&lt;/span&gt;
+					&lt;strong data-hud="agl"&gt;000&lt;/strong&gt;
+				&lt;/div&gt;
+				&lt;div class="flight-fighter-hud__box"&gt;
+					&lt;span&gt;WPN&lt;/span&gt;
+					&lt;strong data-hud="weapon"&gt;--&lt;/strong&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+
+			&lt;div class="flight-fighter-hud__status"&gt;
+				&lt;span data-hud="region"&gt;Hold Pattern&lt;/span&gt;
+				&lt;span data-hud="wave"&gt;FREE&lt;/span&gt;
+				&lt;span data-hud="lock"&gt;LOCK NONE&lt;/span&gt;
+				&lt;span data-hud="score"&gt;score 0&lt;/span&gt;
+				&lt;span data-hud="time"&gt;00:00.0&lt;/span&gt;
+			&lt;/div&gt;
+
+			&lt;div class="flight-fighter-hud__warning" data-hud="warning"&gt;PULL UP&lt;/div&gt;
+		`;
+
+		this.root.appendChild(this.overlay);
+		this.pitchTape = this.overlay.querySelector('[data-hud="pitchTape"]');
+		for (let degrees = -60; degrees &lt;= 60; degrees += 10) {
+			this.pitchTape.appendChild(createPitchLine(degrees));
+		}
+
+		this.elements = Object.fromEntries(
+			Array.from(this.overlay.querySelectorAll('[data-hud]')).map((element) =&gt; [
+				element.dataset.hud,
+				element,
+			])
+		);
+	}
+
+	setShowHorizonLines(show) {
+		this.pitchTape.style.display = show ? 'block' : 'none';
+	}
+
+	setPullUpWarning(shouldShow) {
+		this.state.pullUpWarning = Boolean(shouldShow);
+		this.elements.warning.classList.toggle('active', this.state.pullUpWarning);
+	}
+
+	// HUD presentation angles are degrees; simulation angles stay radians.
+	renderDashboard({
+		regionName = 'Hold Pattern',
+		speed = 0,
+		altitude = 0,
+		agl = 0,
+		waveLabel = 'FREE',
+		waveDetail = '',
+		compassHeadingDegrees = 0,
+		compassHeadingText = '',
+		timeText = '',
+		scoreText = '',
+		throttle = 0,
+		pitchDegrees = 0,
+		rollDegrees = 0,
+		weaponLabel = '--',
+		lockStatus = 'NONE',
+		gunHeat = 0,
+		pullUpWarning = null,
+	}) {
+		const safeCompassHeadingDegrees = normalizeCompassHeadingDegrees(
+			Number.isFinite(compassHeadingDegrees)
+				? compassHeadingDegrees
+				: Number.parseFloat(compassHeadingText)
+		);
+		const safePitch = ((toFinite(pitchDegrees, 0) % 360) + 360) % 360;
+		const safeRoll = toFinite(rollDegrees, 0);
+		const throttleRatio = clamp(toFinite(throttle, 0), 0, 1);
+		const heatPercent = Math.round(clamp(toFinite(gunHeat, 0), 0, 1) * 100);
+
+		const translatePitch = safePitch &lt; 180 ? safePitch : safePitch - 360;
+
+		setText(this.elements.compassHeading, padNumber(safeCompassHeadingDegrees, 3));
+		setText(this.elements.cardinal, cardinalForCompassHeadingDegrees(safeCompassHeadingDegrees));
+		setText(this.elements.speed, padNumber(speed, 3));
+		setText(this.elements.altitude, padNumber(altitude, 4));
+		setText(this.elements.agl, padNumber(agl, 3));
+		setText(this.elements.throttle, `${Math.round(throttleRatio * 100).toString().padStart(3, '0')}%`);
+		setText(this.elements.attitude, `${safePitch &gt;= 0 ? '+' : ''}${safePitch.toFixed(1)} / ${safeRoll &gt;= 0 ? '+' : ''}${safeRoll.toFixed(1)}`);
+		setText(this.elements.weapon, weaponLabel);
+		setText(this.elements.region, regionName);
+		setText(this.elements.wave, waveDetail ? `${waveLabel} ${waveDetail}` : waveLabel);
+		setText(this.elements.lock, `LOCK ${lockStatus}  HEAT ${heatPercent}%`);
+		setText(this.elements.score, scoreText);
+		setText(this.elements.time, timeText);
+
+		this.elements.throttleFill.style.width = `${Math.round(throttleRatio * 100)}%`;
+		this.pitchTape.style.transform = `translate(-50%, -50%) rotate(${-safeRoll}deg) translateY(${translatePitch * 7}px)`;
+
+		if (pullUpWarning !== null) {
+			this.setPullUpWarning(pullUpWarning);
+		}
+	}
+
+	dispose() {
+		this.overlay.remove();
+		this.root.classList.remove('flight-fighter-hud');
+	}
+}
+</code></pre></div></section></main><footer><div class="wrap"><div class="foot-in"><div class="foot-brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></div><div class="foot-links"><a href="/GameBox/en/modules/">Modules</a><a href="/GameBox/en/#how">How it works</a><a href="/GameBox/en/#install">Install</a><a href="https://github.com/shushuitie2017/GameBox" target="_blank" rel="noopener">GitHub</a></div><div class="foot-note">GameBox · MIT License · Browser 3D game building blocks for coding agents</div></div></div></footer><script src="/GameBox/static/app.js"></script></body></html>

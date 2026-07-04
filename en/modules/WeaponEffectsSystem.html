@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="importmap">{"imports":{"three":"/GameBox/static/vendor/three.module.js"}}</script><title>WeaponEffectsSystem — GameBox</title><meta name="description" content="Renders short-lived visual feedback for weapon fire and impacts."><link rel="canonical" href="https://shushuitie2017.github.io/GameBox/en/modules/WeaponEffectsSystem.html"><link rel="alternate" hreflang="en" href="https://shushuitie2017.github.io/GameBox/en/modules/WeaponEffectsSystem.html"><link rel="alternate" hreflang="zh" href="https://shushuitie2017.github.io/GameBox/zh/modules/WeaponEffectsSystem.html"><link rel="alternate" hreflang="ja" href="https://shushuitie2017.github.io/GameBox/ja/modules/WeaponEffectsSystem.html"><link rel="alternate" hreflang="x-default" href="https://shushuitie2017.github.io/GameBox/en/modules/WeaponEffectsSystem.html"><meta property="og:type" content="website"><meta property="og:site_name" content="GameBox"><meta property="og:title" content="WeaponEffectsSystem — GameBox"><meta property="og:description" content="Renders short-lived visual feedback for weapon fire and impacts."><meta property="og:url" content="https://shushuitie2017.github.io/GameBox/en/modules/WeaponEffectsSystem.html"><meta property="og:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="WeaponEffectsSystem — GameBox"><meta name="twitter:description" content="Renders short-lived visual feedback for weapon fire and impacts."><meta name="twitter:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "GameBox", "url": "https://shushuitie2017.github.io/GameBox/en/modules/WeaponEffectsSystem.html", "description": "Renders short-lived visual feedback for weapon fire and impacts.", "inLanguage": "en"}</script><link rel="icon" href="/GameBox/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/GameBox/static/style.css"></head><body><div class="bg"></div><nav><div class="nav-in"><a href="/GameBox/en/" class="brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></a><div class="nav-links"><a href="/GameBox/en/modules/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 2 2 7l10 5 10-5L12 2Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Modules</a><a href="/GameBox/en/demos/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M9 9l4 3-4 3z"/></svg>Demos</a><a href="/GameBox/en/#how" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>How it works</a><a href="/GameBox/en/#install" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>Install</a></div><div class="nav-right"><details class="lang-dd"><summary class="ls-sum"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg><span>English</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.7"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ls-panel"><a href="/GameBox/en/modules/WeaponEffectsSystem.html" class="ls-item on">English<span class="ls-chk">✓</span></a><a href="/GameBox/zh/modules/WeaponEffectsSystem.html" class="ls-item">中文</a><a href="/GameBox/ja/modules/WeaponEffectsSystem.html" class="ls-item">日本語</a></div></details><script>try{localStorage.setItem('gbx_lang','en')}catch(e){}</script><a href="https://github.com/shushuitie2017/GameBox" class="nav-cta" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a></div></div></nav><header class="phead"><div class="wrap"><div class="crumb"><a href="/GameBox/en/">Home</a> / <a href="/GameBox/en/modules/">Modules</a> / <a href="/GameBox/en/modules/#cat-world">World</a> / WeaponEffectsSystem</div><div class="mtitle-row"><h1 class="ptitle mono">WeaponEffectsSystem</h1><span class="tier tier-three">three</span></div><p class="psub">Renders short-lived visual feedback for weapon fire and impacts.</p></div></header><main class="wrap narrow module-body"><div class="meta-grid"><div class="meta-row"><span class="mk">Category</span><span class="mv">World</span></div><div class="meta-row"><span class="mk">Dependency tier</span><span class="mv"><span class="tier tier-three">three</span></span></div><div class="meta-row"><span class="mk">Internal deps</span><span class="mv"><a href="/GameBox/en/modules/RandomUtils.html" class="pill">RandomUtils</a><a href="/GameBox/en/modules/Vector3Utils.html" class="pill">Vector3Utils</a><a href="/GameBox/en/modules/Object3DUtils.html" class="pill">Object3DUtils</a></span></div><div class="meta-row"><span class="mk">Related modules</span><span class="mv"><span class="muted">none</span></span></div><div class="meta-row"><span class="mk">Demo scene</span><span class="mv"><code>arena-combat</code> · <i class="muted">Featured in this demo scene (coming soon)</i></span></div></div><div class="getthis"><div class="gt-head"><b>Take just this module</b><button class="copy-path" data-copy="modules/world/visual-effects/WeaponEffectsSystem.js">Copy relative path</button></div><code class="gt-path">modules/world/visual-effects/WeaponEffectsSystem.js</code><p class="sub">Copy it together with its internal dependencies, preserving the relative directory structure.</p></div><section class="source"><div class="src-head"><h2 class="sh">Source</h2><button class="copy">Copy source</button></div><div class="code code-src"><pre><code>import * as THREE from 'three';
+import { DEFAULT_PRNG } from '../../math/RandomUtils.js';
+import { toVec3 } from '../../math/Vector3Utils.js';
+import { disposeObject3D } from '../Object3DUtils.js';
+
+export class WeaponEffectsSystem {
+  constructor({maxEffects = 16, prng = DEFAULT_PRNG}) {
+    this.group = new THREE.Group();
+    this.group.name = 'WeaponEffectsSystem';
+    this.maxEffects = Math.max(8, Math.floor(maxEffects));
+    this.maxTracers = this.maxEffects;
+    this.maxParticles = Math.max(128, this.maxEffects * 8);
+    this.prng = prng;
+    this.flashes = [];
+    this.effects = [];
+
+    this._color = new THREE.Color();
+    this._tmpOrigin = new THREE.Vector3();
+    this._tmpForward = new THREE.Vector3();
+
+    this._setupTracerPool();
+    this._setupParticlePool();
+  }
+
+  _setupTracerPool() {
+    const vertexCount = this.maxTracers * 2;
+    this.tracerPositions = new Float32Array(vertexCount * 3);
+    this.tracerColors = new Float32Array(vertexCount * 3);
+    this.tracers = [];
+    this.nextTracer = 0;
+
+    const geometry = new THREE.BufferGeometry();
+    this.tracerPositionAttribute = new THREE.BufferAttribute(this.tracerPositions, 3)
+      .setUsage(THREE.DynamicDrawUsage);
+    this.tracerColorAttribute = new THREE.BufferAttribute(this.tracerColors, 3)
+      .setUsage(THREE.DynamicDrawUsage);
+    geometry.setAttribute('position', this.tracerPositionAttribute);
+    geometry.setAttribute('color', this.tracerColorAttribute);
+
+    const material = new THREE.LineBasicMaterial({
+      transparent: true,
+      opacity: 0.9,
+      vertexColors: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+
+    this.tracerLines = new THREE.LineSegments(geometry, material);
+    this.tracerLines.frustumCulled = false;
+    this.group.add(this.tracerLines);
+
+    for (let i = 0; i &lt; this.maxTracers; i += 1) {
+      this.tracers.push({
+        active: false,
+        ageSeconds: 0,
+        ttlSeconds: 0,
+        color: new THREE.Color(),
+      });
+    }
+  }
+
+  _setupParticlePool() {
+    this.particlePositions = new Float32Array(this.maxParticles * 3);
+    this.particleVelocities = new Float32Array(this.maxParticles * 3);
+    this.particleColors = new Float32Array(this.maxParticles * 3);
+    this.particleBaseColors = new Float32Array(this.maxParticles * 3);
+    this.particleAges = new Float32Array(this.maxParticles);
+    this.particleTtls = new Float32Array(this.maxParticles);
+    this.particleActive = new Uint8Array(this.maxParticles);
+    this.activeParticles = [];
+    this.nextParticle = 0;
+
+    const geometry = new THREE.BufferGeometry();
+    this.particlePositionAttribute = new THREE.BufferAttribute(this.particlePositions, 3)
+      .setUsage(THREE.DynamicDrawUsage);
+    this.particleColorAttribute = new THREE.BufferAttribute(this.particleColors, 3)
+      .setUsage(THREE.DynamicDrawUsage);
+    geometry.setAttribute('position', this.particlePositionAttribute);
+    geometry.setAttribute('color', this.particleColorAttribute);
+
+    const material = new THREE.PointsMaterial({
+      size: 0.05,
+      transparent: true,
+      opacity: 0.9,
+      depthWrite: false,
+      vertexColors: true,
+      blending: THREE.AdditiveBlending,
+    });
+
+    this.particlePoints = new THREE.Points(geometry, material);
+    this.particlePoints.frustumCulled = false;
+    this.group.add(this.particlePoints);
+  }
+
+  _setTracerSlot(index, from, to, color, ttlSeconds) {
+    const tracer = this.tracers[index];
+    const vertexOffset = index * 6;
+    this._color.set(color);
+
+    this.tracerPositions[vertexOffset] = from.x;
+    this.tracerPositions[vertexOffset + 1] = from.y;
+    this.tracerPositions[vertexOffset + 2] = from.z;
+    this.tracerPositions[vertexOffset + 3] = to.x;
+    this.tracerPositions[vertexOffset + 4] = to.y;
+    this.tracerPositions[vertexOffset + 5] = to.z;
+
+    tracer.color.copy(this._color);
+    tracer.active = true;
+    tracer.ageSeconds = 0;
+    tracer.ttlSeconds = ttlSeconds;
+    this._writeTracerColor(index, 1);
+  }
+
+  _writeTracerColor(index, fade) {
+    const tracer = this.tracers[index];
+    const vertexOffset = index * 6;
+    const r = tracer.color.r * fade;
+    const g = tracer.color.g * fade;
+    const b = tracer.color.b * fade;
+
+    this.tracerColors[vertexOffset] = r;
+    this.tracerColors[vertexOffset + 1] = g;
+    this.tracerColors[vertexOffset + 2] = b;
+    this.tracerColors[vertexOffset + 3] = r;
+    this.tracerColors[vertexOffset + 4] = g;
+    this.tracerColors[vertexOffset + 5] = b;
+  }
+
+  _clearTracerSlot(index) {
+    const tracer = this.tracers[index];
+    tracer.active = false;
+    tracer.ageSeconds = 0;
+    tracer.ttlSeconds = 0;
+    this._writeTracerColor(index, 0);
+  }
+
+  spawnTracer(from, to, color = 0xffe7ad, ttlSeconds = 0.08) {
+    if (!from || !to) return null;
+
+    const index = this.nextTracer;
+    this.nextTracer = (this.nextTracer + 1) % this.maxTracers;
+    this._setTracerSlot(
+      index,
+      toVec3(from),
+      toVec3(to),
+      color,
+      Math.max(0.001, ttlSeconds)
+    );
+    this.tracerPositionAttribute.needsUpdate = true;
+    this.tracerColorAttribute.needsUpdate = true;
+    return this.tracerLines;
+  }
+
+  emitHitBurst(
+    position,
+    direction = new THREE.Vector3(0, 1, 0),
+    color = 0xff5533,
+    count = 10,
+    speed = 1.5,
+    spread = 0.8,
+    lifetimeMs = 300
+  ) {
+    if (!position) return null;
+
+    const particleCount = Math.max(0, Math.floor(count));
+    const ttlSeconds = Math.max(0.02, lifetimeMs / 1000);
+    this._tmpOrigin.copy(toVec3(position));
+    this._tmpForward.copy(toVec3(direction));
+    if (this._tmpForward.lengthSq() &lt;= 1e-6) this._tmpForward.set(0, 1, 0);
+    this._tmpForward.normalize();
+    this._color.set(color);
+
+    for (let i = 0; i &lt; particleCount; i += 1) {
+      const index = this.nextParticle;
+      const offset = index * 3;
+      this.nextParticle = (this.nextParticle + 1) % this.maxParticles;
+
+      const vx = ((this.prng.random() - 0.5) * spread + this._tmpForward.x) * speed;
+      const vy = ((this.prng.random() - 0.5) * spread + this._tmpForward.y) * speed;
+      const vz = ((this.prng.random() - 0.5) * spread + this._tmpForward.z) * speed;
+
+      this.particlePositions[offset] = this._tmpOrigin.x;
+      this.particlePositions[offset + 1] = this._tmpOrigin.y;
+      this.particlePositions[offset + 2] = this._tmpOrigin.z;
+      this.particleVelocities[offset] = vx;
+      this.particleVelocities[offset + 1] = vy;
+      this.particleVelocities[offset + 2] = vz;
+      this.particleBaseColors[offset] = this._color.r;
+      this.particleBaseColors[offset + 1] = this._color.g;
+      this.particleBaseColors[offset + 2] = this._color.b;
+      this.particleColors[offset] = this._color.r;
+      this.particleColors[offset + 1] = this._color.g;
+      this.particleColors[offset + 2] = this._color.b;
+      this.particleAges[index] = 0;
+      this.particleTtls[index] = ttlSeconds;
+      if (!this.particleActive[index]) {
+        this.activeParticles.push(index);
+      }
+      this.particleActive[index] = 1;
+    }
+
+    this.particlePositionAttribute.needsUpdate = true;
+    this.particleColorAttribute.needsUpdate = true;
+    return this.particlePoints;
+  }
+
+  step(deltaSeconds = 1 / 60) {
+    let tracersChanged = false;
+    let particlesChanged = false;
+
+    for (let i = 0; i &lt; this.tracers.length; i += 1) {
+      const tracer = this.tracers[i];
+      if (!tracer.active) continue;
+
+      tracer.ageSeconds += deltaSeconds;
+      const t = Math.min(1, tracer.ageSeconds / tracer.ttlSeconds);
+      this._writeTracerColor(i, 1 - t);
+      tracersChanged = true;
+
+      if (tracer.ageSeconds &gt;= tracer.ttlSeconds) {
+        this._clearTracerSlot(i);
+      }
+    }
+
+    let writeParticle = 0;
+    for (let i = 0; i &lt; this.activeParticles.length; i += 1) {
+      const index = this.activeParticles[i];
+      if (!this.particleActive[index]) continue;
+
+      const offset = index * 3;
+      this.particleAges[index] += deltaSeconds;
+      const t = Math.min(1, this.particleAges[index] / this.particleTtls[index]);
+      const fade = 1 - t;
+      this.particleVelocities[offset + 1] -= 3 * deltaSeconds;
+      this.particlePositions[offset] += this.particleVelocities[offset] * deltaSeconds;
+      this.particlePositions[offset + 1] += this.particleVelocities[offset + 1] * deltaSeconds;
+      this.particlePositions[offset + 2] += this.particleVelocities[offset + 2] * deltaSeconds;
+      this.particleColors[offset] = this.particleBaseColors[offset] * fade;
+      this.particleColors[offset + 1] = this.particleBaseColors[offset + 1] * fade;
+      this.particleColors[offset + 2] = this.particleBaseColors[offset + 2] * fade;
+      particlesChanged = true;
+
+      if (this.particleAges[index] &gt;= this.particleTtls[index]) {
+        this.particleActive[index] = 0;
+        this.particleColors[offset] = 0;
+        this.particleColors[offset + 1] = 0;
+        this.particleColors[offset + 2] = 0;
+      } else {
+        this.activeParticles[writeParticle] = index;
+        writeParticle += 1;
+      }
+    }
+    this.activeParticles.length = writeParticle;
+
+    if (tracersChanged) this.tracerColorAttribute.needsUpdate = true;
+    if (particlesChanged) {
+      this.particlePositionAttribute.needsUpdate = true;
+      this.particleColorAttribute.needsUpdate = true;
+    }
+  }
+
+  clear() {
+    for (let i = 0; i &lt; this.tracers.length; i += 1) {
+      this._clearTracerSlot(i);
+    }
+    this.tracerColorAttribute.needsUpdate = true;
+
+    this.particlePositions.fill(0);
+    this.particleVelocities.fill(0);
+    this.particleColors.fill(0);
+    this.particleBaseColors.fill(0);
+    this.particleAges.fill(0);
+    this.particleTtls.fill(0);
+    this.particleActive.fill(0);
+    this.activeParticles.length = 0;
+    this.particlePositionAttribute.needsUpdate = true;
+    this.particleColorAttribute.needsUpdate = true;
+
+    this.effects.length = 0;
+  }
+
+  dispose() {
+    this.clear();
+    disposeObject3D(this.group);
+  }
+}
+</code></pre></div></section></main><footer><div class="wrap"><div class="foot-in"><div class="foot-brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></div><div class="foot-links"><a href="/GameBox/en/modules/">Modules</a><a href="/GameBox/en/#how">How it works</a><a href="/GameBox/en/#install">Install</a><a href="https://github.com/shushuitie2017/GameBox" target="_blank" rel="noopener">GitHub</a></div><div class="foot-note">GameBox · MIT License · Browser 3D game building blocks for coding agents</div></div></div></footer><script src="/GameBox/static/app.js"></script></body></html>
