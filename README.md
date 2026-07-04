@@ -54,6 +54,16 @@ mkdir -p ~/.claude/skills/gamebox && cp -R gamebox/. ~/.claude/skills/gamebox/
 
 4. 在 Claude Code 输入框中，键入 `/gamebox` 来调用该 skill，或在任务匹配 skill 描述时让它自动加载。
 
+## 💬 社群
+
+欢迎加入 GameBox 开源社群，扫码进群交流：
+
+<p align="center">
+  <img src="assets/community-qr.jpg" alt="GameBox 开源社群" width="320" />
+</p>
+
+> 微信群二维码有时效，若已过期，欢迎在 Issues 中留言获取最新入群方式。
+
 <br/>
 
 ---
@@ -111,3 +121,13 @@ mkdir -p ~/.claude/skills/gamebox && cp -R gamebox/. ~/.claude/skills/gamebox/
 3. Restart the Claude app (optional).
 
 4. In the Claude Code chatbox, invoke the skill by typing `/gamebox`, or let it load automatically when the task matches the skill description.
+
+## 💬 Community
+
+Join the GameBox open-source community — scan the QR code to enter the group chat:
+
+<p align="center">
+  <img src="assets/community-qr.jpg" alt="GameBox open-source community" width="320" />
+</p>
+
+> The WeChat group QR code expires periodically. If it no longer works, please leave a note in Issues to get the latest invite.
