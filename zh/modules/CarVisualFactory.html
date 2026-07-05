@@ -1,5 +1,9 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="importmap">{"imports":{"three":"/GameBox/static/vendor/three.module.js"}}</script><title>CarVisualFactory — GameBox</title><meta name="description" content="为竞速和原型载具构建轻量车视觉模型。"><link rel="canonical" href="https://shushuitie2017.github.io/GameBox/zh/modules/CarVisualFactory.html"><link rel="alternate" hreflang="en" href="https://shushuitie2017.github.io/GameBox/en/modules/CarVisualFactory.html"><link rel="alternate" hreflang="zh" href="https://shushuitie2017.github.io/GameBox/zh/modules/CarVisualFactory.html"><link rel="alternate" hreflang="ja" href="https://shushuitie2017.github.io/GameBox/ja/modules/CarVisualFactory.html"><link rel="alternate" hreflang="x-default" href="https://shushuitie2017.github.io/GameBox/en/modules/CarVisualFactory.html"><meta property="og:type" content="website"><meta property="og:site_name" content="GameBox"><meta property="og:title" content="CarVisualFactory — GameBox"><meta property="og:description" content="为竞速和原型载具构建轻量车视觉模型。"><meta property="og:url" content="https://shushuitie2017.github.io/GameBox/zh/modules/CarVisualFactory.html"><meta property="og:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="CarVisualFactory — GameBox"><meta name="twitter:description" content="为竞速和原型载具构建轻量车视觉模型。"><meta name="twitter:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "GameBox", "url": "https://shushuitie2017.github.io/GameBox/zh/modules/CarVisualFactory.html", "description": "为竞速和原型载具构建轻量车视觉模型。", "inLanguage": "zh-CN"}</script><link rel="icon" href="/GameBox/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/GameBox/static/style.css"></head><body><div class="bg"></div><nav><div class="nav-in"><a href="/GameBox/zh/" class="brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></a><div class="nav-links"><a href="/GameBox/zh/modules/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 2 2 7l10 5 10-5L12 2Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>模块目录</a><a href="/GameBox/zh/demos/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M9 9l4 3-4 3z"/></svg>演示场</a><a href="/GameBox/zh/#how" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>如何使用</a><a href="/GameBox/zh/#install" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>安装</a></div><div class="nav-right"><details class="lang-dd"><summary class="ls-sum"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg><span>中文</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.7"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ls-panel"><a href="/GameBox/en/modules/CarVisualFactory.html" class="ls-item">English</a><a href="/GameBox/zh/modules/CarVisualFactory.html" class="ls-item on">中文<span class="ls-chk">✓</span></a><a href="/GameBox/ja/modules/CarVisualFactory.html" class="ls-item">日本語</a></div></details><script>try{localStorage.setItem('gbx_lang','zh')}catch(e){}</script><a href="https://github.com/shushuitie2017/GameBox" class="nav-cta" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a></div></div></nav><header class="phead"><div class="wrap"><div class="crumb"><a href="/GameBox/zh/">首页</a> / <a href="/GameBox/zh/modules/">模块目录</a> / <a href="/GameBox/zh/modules/#cat-world">世界 / 环境 / 视觉</a> / CarVisualFactory</div><div class="mtitle-row"><h1 class="ptitle mono">CarVisualFactory</h1><span class="tier tier-three">three</span></div><p class="psub">为竞速和原型载具构建轻量车视觉模型。</p></div></header><main class="wrap narrow module-body"><div class="meta-grid"><div class="meta-row"><span class="mk">类别</span><span class="mv">世界 / 环境 / 视觉</span></div><div class="meta-row"><span class="mk">依赖档位</span><span class="mv"><span class="tier tier-three">three</span></span></div><div class="meta-row"><span class="mk">内部依赖</span><span class="mv"><span class="muted">无</span></span></div><div class="meta-row"><span class="mk">相关模块</span><span class="mv"><span class="muted">无</span></span></div><div class="meta-row"><span class="mk">演示场</span><span class="mv"><code>factory-showroom</code> · <a class="pill" href="/GameBox/zh/demos/">视觉工厂展厅 ↓</a></span></div></div><div class="getthis"><div class="gt-head"><b>只取这个模块</b><button class="copy-path" data-copy="modules/world/object/factory/CarVisualFactory.js">复制相对路径</button></div><code class="gt-path">modules/world/object/factory/CarVisualFactory.js</code><p class="sub">连同其内部依赖一并复制，保留相对目录结构。</p></div><section class="mod-demo"><div class="src-head"><h2 class="sh">视觉工厂展厅</h2><span class="tier tier-three">three</span></div><div class="demo-stage" style="aspect-ratio:16/9"><div class="demo-canvas" id="demo-factory-showroom"></div><script type="module">import{mount}from"/GameBox/static/demos/factory-showroom.js";mount(document.getElementById("demo-factory-showroom"),{interactive:false});</script></div><p class="demo-controls">自动旋转展示，无需操作。</p></section><section class="source"><div class="src-head"><h2 class="sh">源码</h2><button class="copy">复制源码</button></div><div class="code code-src"><pre><code>import * as THREE from 'three';
 
+// A car whose body is one smooth, bevelled silhouette (hood → windshield → roof →
+// trunk) extruded across the width, with a tinted glass greenhouse, lights and
+// hubbed wheels. Local forward is -Z; wheel order follows wheelOffsets
+// (front pair first). Return shape is unchanged: { group, wheels, wheelPivots, forwardArrow }.
 export function createCarVisual({
   paintColor = 0xc75238,
   cabinColor = 0xf4f7ff,
@@ -14,27 +18,79 @@ export function createCarVisual({
 }) {
   const group = new THREE.Group();
 
-  const body = new THREE.Mesh(
-    new THREE.BoxGeometry(1.7, 0.58, 3.0),
-    new THREE.MeshStandardMaterial({ color: paintColor, metalness: 0.1 })
-  );
-  body.position.y = 0.42;
-  body.castShadow = true;
-  body.receiveShadow = true;
+  const HALF_W = 0.8;
+
+  // Side silhouette, drawn in (x = length, front at +x) × (y = height); extruded
+  // across the width, then rotated so the front faces -Z.
+  const s = new THREE.Shape();
+  s.moveTo(-1.62, 0.06);
+  s.lineTo(1.62, 0.06);
+  s.lineTo(1.66, 0.34);
+  s.quadraticCurveTo(1.70, 0.52, 1.5, 0.56);      // hood front lip
+  s.lineTo(0.66, 0.60);
+  s.quadraticCurveTo(0.44, 0.62, 0.30, 0.96);     // windshield rake
+  s.lineTo(-0.52, 1.04);                          // roof
+  s.quadraticCurveTo(-0.92, 1.03, -1.12, 0.66);   // rear window
+  s.lineTo(-1.5, 0.6);                            // trunk deck
+  s.quadraticCurveTo(-1.66, 0.58, -1.62, 0.34);
+  s.lineTo(-1.62, 0.06);
+
+  const bodyGeo = new THREE.ExtrudeGeometry(s, {
+    depth: HALF_W * 2, bevelEnabled: true, bevelThickness: 0.09, bevelSize: 0.09, bevelSegments: 3, steps: 1,
+  });
+  bodyGeo.translate(0, 0, -HALF_W);
+  bodyGeo.rotateY(Math.PI / 2);                    // length → Z (front at -Z), width → X
+  bodyGeo.computeVertexNormals();
+  const body = new THREE.Mesh(bodyGeo, new THREE.MeshStandardMaterial({
+    color: paintColor, metalness: 0.42, roughness: 0.38,
+  }));
+  body.castShadow = true; body.receiveShadow = true;
   group.add(body);
 
-  const cabin = new THREE.Mesh(
-    new THREE.BoxGeometry(1.24, 0.45, 1.3),
-    new THREE.MeshStandardMaterial({ color: cabinColor, metalness: 0.08 })
-  );
-  cabin.position.set(0, 0.83, -0.1);
-  cabin.castShadow = true;
-  cabin.receiveShadow = true;
-  group.add(cabin);
+  // Rocker sill under the doors reads the body as sitting on the wheels.
+  const sill = new THREE.Mesh(
+    new THREE.BoxGeometry(1.58, 0.16, 2.5),
+    new THREE.MeshStandardMaterial({ color: 0x11151d, roughness: 0.85 }));
+  sill.position.y = 0.14; group.add(sill);
 
-  const wheelMaterial = new THREE.MeshStandardMaterial({ color: wheelColor });
-  const wheelGeometry = new THREE.CylinderGeometry(0.35, 0.35, 0.32, 16);
-  wheelGeometry.rotateZ(Math.PI * 0.5);
+  // Glass greenhouse: a narrower, tinted cap over the cabin profile.
+  const g = new THREE.Shape();
+  g.moveTo(0.60, 0.60);
+  g.quadraticCurveTo(0.40, 0.63, 0.27, 0.94);
+  g.lineTo(-0.50, 1.01);
+  g.quadraticCurveTo(-0.88, 1.0, -1.06, 0.66);
+  g.lineTo(-0.98, 0.63);
+  g.quadraticCurveTo(-0.84, 0.9, -0.52, 0.9);
+  g.lineTo(0.24, 0.84);
+  g.quadraticCurveTo(0.42, 0.63, 0.58, 0.62);
+  g.lineTo(0.60, 0.60);
+  const glassGeo = new THREE.ExtrudeGeometry(g, {
+    depth: 1.34, bevelEnabled: true, bevelThickness: 0.04, bevelSize: 0.04, bevelSegments: 2, steps: 1,
+  });
+  glassGeo.translate(0, 0, -0.67);
+  glassGeo.rotateY(Math.PI / 2);
+  const glass = new THREE.Mesh(glassGeo, new THREE.MeshStandardMaterial({
+    color: cabinColor, metalness: 0.2, roughness: 0.12, transparent: true, opacity: 0.55,
+  }));
+  glass.position.y = 0.02; group.add(glass);
+
+  // Lights: emissive cyan-white headlamps at -Z, red tails at +Z.
+  const lamp = (color, emissive, x, z) =&gt; {
+    const m = new THREE.Mesh(
+      new THREE.BoxGeometry(0.26, 0.14, 0.06),
+      new THREE.MeshStandardMaterial({ color, emissive, emissiveIntensity: 0.9, roughness: 0.4 }));
+    m.position.set(x, 0.42, z); group.add(m);
+  };
+  lamp(0xffffff, 0xbfe4ff, -0.52, -1.66); lamp(0xffffff, 0xbfe4ff, 0.52, -1.66);
+  lamp(0xff5a4d, 0x5a0f0a, -0.54, 1.64); lamp(0xff5a4d, 0x5a0f0a, 0.54, 1.64);
+
+  // ---- Wheels: tire + rim + hub, grouped so rotation.x rolls and pivot.rotation.y steers. ----
+  const tireMat = new THREE.MeshStandardMaterial({ color: wheelColor, roughness: 0.85, metalness: 0.05 });
+  const rimMat = new THREE.MeshStandardMaterial({ color: 0xb9c2d0, roughness: 0.35, metalness: 0.7 });
+  const hubMat = new THREE.MeshStandardMaterial({ color: 0x2a3140, roughness: 0.5, metalness: 0.4 });
+  const tireGeo = new THREE.CylinderGeometry(0.35, 0.35, 0.30, 26); tireGeo.rotateZ(Math.PI / 2);
+  const rimGeo = new THREE.CylinderGeometry(0.21, 0.21, 0.32, 20); rimGeo.rotateZ(Math.PI / 2);
+  const hubGeo = new THREE.CylinderGeometry(0.07, 0.07, 0.34, 8); hubGeo.rotateZ(Math.PI / 2);
 
   const wheels = [];
   const wheelPivots = [];
@@ -42,9 +98,11 @@ export function createCarVisual({
     const wheelPivot = new THREE.Group();
     wheelPivot.position.set(x, y, z);
 
-    const wheel = new THREE.Mesh(wheelGeometry, wheelMaterial);
-    wheel.castShadow = true;
-    wheel.receiveShadow = true;
+    const wheel = new THREE.Group();            // rolls via rotation.x
+    const tire = new THREE.Mesh(tireGeo, tireMat);
+    const rim = new THREE.Mesh(rimGeo, rimMat);
+    const hub = new THREE.Mesh(hubGeo, hubMat);
+    for (const m of [tire, rim, hub]) { m.castShadow = true; m.receiveShadow = true; wheel.add(m); }
     wheelPivot.add(wheel);
     group.add(wheelPivot);
 

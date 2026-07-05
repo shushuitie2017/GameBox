@@ -9,26 +9,52 @@ import { WorldTargetCharacterMotionController } from '../../gamebox/modules/acto
 import { GeneralObjectModelController } from '../../gamebox/modules/actor-motion/GeneralObjectModelController.js';
 import { GroundClickIndicator } from '../../gamebox/modules/world/visual-effects/GroundClickIndicator.js';
 
+// 干净风格化机器人（面朝 -Z，脚贴 y=0）：光壳躯体 + 青色核心/面罩 + 深色关节。
 function buildCharacter() {
   const g = new THREE.Group();
-  const bodyMat = new THREE.MeshStandardMaterial({ color: 0x9fb4d4, metalness: 0.3, roughness: 0.6 });
-  const accentMat = new THREE.MeshStandardMaterial({ color: 0x32e0ff, emissive: 0x0a3a4a, emissiveIntensity: 0.6, metalness: 0.5, roughness: 0.4 });
-  const darkMat = new THREE.MeshStandardMaterial({ color: 0x2a3348, roughness: 0.8 });
-  // 躯干胶囊（默认轴 Y）：feet 贴 y=0 → 上移 length/2 + radius。
-  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.32, 0.7, 8, 16), bodyMat);
-  body.position.y = 0.67; g.add(body);
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.26, 20, 16), bodyMat);
-  head.position.y = 1.5; g.add(head);
-  const visor = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.12, 0.06), accentMat);
-  visor.position.set(0, 1.53, -0.22); g.add(visor);           // 面罩朝 -Z（正面）
-  const nose = new THREE.Mesh(new THREE.ConeGeometry(0.12, 0.32, 4), accentMat);
-  nose.rotation.x = -Math.PI / 2;                             // 锥尖 +Y → -Z
-  nose.position.set(0, 0.92, -0.42); g.add(nose);             // 胸前朝向指示
+  const shell = new THREE.MeshStandardMaterial({ color: 0xb7c4dc, metalness: 0.45, roughness: 0.42 });
+  const dark = new THREE.MeshStandardMaterial({ color: 0x272f40, metalness: 0.5, roughness: 0.55 });
+  const accent = new THREE.MeshStandardMaterial({ color: 0x32e0ff, emissive: 0x1aa6c8, emissiveIntensity: 0.9, metalness: 0.4, roughness: 0.3 });
+
+  // 髋 + 躯干（胶囊，胸腔略扁）。
+  const hips = new THREE.Mesh(new THREE.CapsuleGeometry(0.24, 0.12, 6, 16), dark);
+  hips.position.y = 0.92; hips.scale.z = 0.8; g.add(hips);
+  const torso = new THREE.Mesh(new THREE.CapsuleGeometry(0.30, 0.34, 8, 20), shell);
+  torso.position.y = 1.24; torso.scale.set(1.06, 1, 0.72); g.add(torso);
+  // 胸口核心灯。
+  const core = new THREE.Mesh(new THREE.SphereGeometry(0.1, 16, 12), accent);
+  core.position.set(0, 1.28, -0.23); core.scale.z = 0.6; g.add(core);
+
+  // 头 + 面罩（面罩朝 -Z＝正面）。
+  const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.11, 0.12, 12), dark);
+  neck.position.y = 1.5; g.add(neck);
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.23, 22, 18), shell);
+  head.position.y = 1.66; head.scale.set(1, 1.05, 1); g.add(head);
+  const visor = new THREE.Mesh(new THREE.SphereGeometry(0.19, 20, 8, 0, Math.PI * 2, Math.PI * 0.34, Math.PI * 0.3), accent);
+  visor.position.set(0, 1.68, -0.02); visor.rotation.x = Math.PI * 0.62; g.add(visor);
+
+  // 肩 + 手臂（上臂 + 前臂 + 肘/肩关节）。
   for (const side of [-1, 1]) {
-    const arm = new THREE.Mesh(new THREE.CapsuleGeometry(0.1, 0.5, 6, 12), darkMat);
-    arm.position.set(side * 0.44, 0.78, 0); g.add(arm);
-    const foot = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.16, 0.42), darkMat);
-    foot.position.set(side * 0.16, 0.08, -0.04); g.add(foot);
+    const shoulder = new THREE.Mesh(new THREE.SphereGeometry(0.13, 14, 12), dark);
+    shoulder.position.set(side * 0.38, 1.34, 0); g.add(shoulder);
+    const upper = new THREE.Mesh(new THREE.CapsuleGeometry(0.088, 0.24, 6, 12), shell);
+    upper.position.set(side * 0.40, 1.13, 0.02); g.add(upper);
+    const elbow = new THREE.Mesh(new THREE.SphereGeometry(0.085, 12, 10), dark);
+    elbow.position.set(side * 0.41, 0.97, 0.03); g.add(elbow);
+    const fore = new THREE.Mesh(new THREE.CapsuleGeometry(0.078, 0.22, 6, 12), shell);
+    fore.position.set(side * 0.42, 0.82, 0.05); g.add(fore);
+
+    // 髋关节 + 大腿 + 膝 + 小腿 + 脚。
+    const hip = new THREE.Mesh(new THREE.SphereGeometry(0.12, 12, 10), dark);
+    hip.position.set(side * 0.15, 0.86, 0); g.add(hip);
+    const thigh = new THREE.Mesh(new THREE.CapsuleGeometry(0.12, 0.24, 6, 12), shell);
+    thigh.position.set(side * 0.15, 0.62, 0); g.add(thigh);
+    const knee = new THREE.Mesh(new THREE.SphereGeometry(0.11, 12, 10), dark);
+    knee.position.set(side * 0.15, 0.42, 0); g.add(knee);
+    const shin = new THREE.Mesh(new THREE.CapsuleGeometry(0.1, 0.22, 6, 12), shell);
+    shin.position.set(side * 0.15, 0.24, 0.01); g.add(shin);
+    const foot = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.14, 0.42), dark);
+    foot.position.set(side * 0.15, 0.07, -0.06); g.add(foot);
   }
   return g;
 }

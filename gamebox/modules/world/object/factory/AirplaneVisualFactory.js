@@ -1,6 +1,10 @@
 import * as THREE from 'three';
 import { JetFlameLocalVisual } from '../../visual-effects/JetFlame.js';
 
+// A jet built around a lathed (surface-of-revolution) fuselage with swept wings,
+// a raked canopy and twin tail engines. Local frame: forward is -Z, aft is +Z,
+// so the jet flames sit at the tail. Public params and the returned shape
+// { group, airframe, jetFlames, targetRing } are unchanged.
 export function createAirplaneVisual({
   scale = 8,
   bodyColor = 0xe1ebf5,
@@ -57,75 +61,80 @@ export function createAirplaneVisual({
     transparent: true,
     opacity: canopyOpacity,
   });
+  const engineMaterial = new THREE.MeshStandardMaterial({ color: 0x3a4152, metalness: 0.7, roughness: 0.4 });
 
-  const fuselage = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.28, 0.36, 3.6, 18),
-    bodyMaterial
-  );
-  // CylinderGeometry head faces +Y, rotate -90 (clockwise) to make its head face -Z (local forward)
-  fuselage.rotation.x = -Math.PI / 2;
-  fuselage.castShadow = true;
-  airframe.add(fuselage);
+  // --- Fuselage: lathed profile (radius vs body length), nose at -Z. ---
+  const R = (r, y) => new THREE.Vector2(r, y);
+  const fuseProfile = [
+    R(0.05, 0), R(0.19, 0.35), R(0.28, 0.9), R(0.335, 1.5),
+    R(0.335, 2.05), R(0.30, 2.55), R(0.20, 3.05), R(0.10, 3.4), R(0.012, 3.62),
+  ];
+  const fuseGeo = new THREE.LatheGeometry(fuseProfile, 24);
+  fuseGeo.rotateX(-Math.PI / 2);   // body axis +Y → -Z (nose forward)
+  fuseGeo.translate(0, 0, 1.81);   // centre: nose ≈ -1.81, tail ≈ +1.81
+  const fuselage = new THREE.Mesh(fuseGeo, bodyMaterial);
+  fuselage.castShadow = true; airframe.add(fuselage);
 
-  const nose = new THREE.Mesh(
-    new THREE.ConeGeometry(0.28, 0.96, 18),
-    accentMaterial
-  );
-  // ConeGeometry is same to CylinderGeometry
-  nose.rotation.x = -Math.PI / 2;
-  nose.position.z = -2.25;
-  nose.castShadow = true;
-  airframe.add(nose);
+  // Accent nose cap at the tip.
+  const nose = new THREE.Mesh(new THREE.ConeGeometry(0.11, 0.5, 20), accentMaterial);
+  nose.rotation.x = -Math.PI / 2;                // cone tip +Y → -Z
+  nose.position.z = -1.68; airframe.add(nose);
 
   if (showCanopy) {
-    const canopy = new THREE.Mesh(
-      new THREE.SphereGeometry(0.32, 16, 12),
-      canopyMaterial
-    );
-    canopy.scale.set(1.05, 0.7, 1.8);
-    canopy.position.set(0, 0.25, -0.35);
+    const canopy = new THREE.Mesh(new THREE.SphereGeometry(0.3, 20, 14), canopyMaterial);
+    canopy.scale.set(1.0, 0.72, 1.9);
+    canopy.position.set(0, 0.24, -0.45);
     airframe.add(canopy);
   }
 
-  const wing = new THREE.Mesh(
-    new THREE.BoxGeometry(3.1, 0.1, 0.76),
-    bodyMaterial
-  );
-  wing.position.set(0, -0.02, 0.16);
-  wing.castShadow = true;
-  airframe.add(wing);
+  // --- Swept wings: extruded planform (span × chord), thin in Y. ---
+  function makeWing(rootChordF, rootChordB, tipChordF, tipChordB, span, thick) {
+    const shape = new THREE.Shape();
+    shape.moveTo(0, rootChordF);
+    shape.lineTo(span, tipChordF);
+    shape.lineTo(span, tipChordB);
+    shape.lineTo(0, rootChordB);
+    shape.closePath();
+    const geo = new THREE.ExtrudeGeometry(shape, { depth: thick, bevelEnabled: true, bevelThickness: 0.015, bevelSize: 0.015, bevelSegments: 1, steps: 1 });
+    geo.rotateX(Math.PI / 2);       // x=span, y(chord)→z (front -Z), thin in Y
+    geo.translate(0, 0, 0);
+    return geo;
+  }
+  // main wings (front chord negative = toward -Z), swept back at tips.
+  const wingGeoR = makeWing(-0.5, 0.55, 0.05, 0.36, 1.62, 0.07);
+  for (const sign of [1, -1]) {
+    const wing = new THREE.Mesh(wingGeoR, bodyMaterial);
+    wing.scale.x = sign;
+    wing.position.set(0, -0.03, 0.1);
+    wing.rotation.z = sign * 0.06;   // slight dihedral
+    wing.castShadow = true; airframe.add(wing);
+    // accent wingtip
+    const tip = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.05, 0.34), accentMaterial);
+    tip.position.set(sign * 1.62, -0.03 + 1.62 * 0.06, 0.28); airframe.add(tip);
+  }
 
-  const wingTip = new THREE.Mesh(
-    new THREE.BoxGeometry(3.6, 0.04, 0.2),
-    accentMaterial
-  );
-  wingTip.position.set(0, 0.06, -0.04);
-  wingTip.castShadow = true;
-  airframe.add(wingTip);
+  // --- Tail: swept vertical fin + horizontal stabilisers. ---
+  const finShape = new THREE.Shape();
+  finShape.moveTo(0, 0); finShape.lineTo(0.66, 0.34); finShape.lineTo(0.7, 0.62); finShape.lineTo(0.14, 0.58); finShape.closePath();
+  const finGeo = new THREE.ExtrudeGeometry(finShape, { depth: 0.06, bevelEnabled: false, steps: 1 });
+  finGeo.translate(-0.03, 0, -0.03);
+  finGeo.rotateY(Math.PI / 2);      // fin plane = Y-Z, thin in X
+  const fin = new THREE.Mesh(finGeo, accentMaterial);
+  fin.position.set(0, 0.2, 1.18); fin.castShadow = true; airframe.add(fin);
 
-  const tailWing = new THREE.Mesh(
-    new THREE.BoxGeometry(1.34, 0.08, 0.42),
-    bodyMaterial
-  );
-  tailWing.position.set(0, 0.28, 1.22);
-  tailWing.castShadow = true;
-  airframe.add(tailWing);
+  const stabGeo = makeWing(1.12, 1.42, 1.2, 1.36, 0.62, 0.05);
+  for (const sign of [1, -1]) {
+    const stab = new THREE.Mesh(stabGeo, bodyMaterial);
+    stab.scale.x = sign; stab.position.set(0, 0.24, 0.0); airframe.add(stab);
+  }
 
-  const tailFin = new THREE.Mesh(
-    new THREE.BoxGeometry(0.08, 0.86, 0.56),
-    accentMaterial
-  );
-  tailFin.position.set(0, 0.56, 1.18);
-  tailFin.castShadow = true;
-  airframe.add(tailFin);
-
-  const engineGeometry = new THREE.CylinderGeometry(0.14, 0.19, 1.15, 12);
+  // --- Twin tail engines + exhausts. ---
+  const engineGeo = new THREE.CylinderGeometry(0.15, 0.13, 1.0, 16);
+  engineGeo.rotateX(Math.PI / 2);
   for (const side of [-1, 1]) {
-    const engine = new THREE.Mesh(engineGeometry, bodyMaterial);
-    engine.rotation.x = Math.PI / 2;
-    engine.position.set(side * 0.34, -0.1, 1.25);
-    engine.castShadow = true;
-    airframe.add(engine);
+    const engine = new THREE.Mesh(engineGeo, engineMaterial);
+    engine.position.set(side * 0.34, -0.09, 1.28);
+    engine.castShadow = true; airframe.add(engine);
   }
 
   const airframeCenter = new THREE.Box3()
@@ -137,8 +146,8 @@ export function createAirplaneVisual({
   if (showJetFlames) {
     const flameLeft = new JetFlameLocalVisual();
     const flameRight = new JetFlameLocalVisual();
-    flameLeft.group.position.set(-0.34, -0.1, 1.78);
-    flameRight.group.position.set(0.34, -0.1, 1.78);
+    flameLeft.group.position.set(-0.34, -0.09, 1.82);
+    flameRight.group.position.set(0.34, -0.09, 1.82);
     airframe.add(flameLeft.group);
     airframe.add(flameRight.group);
     jetFlames.push(flameLeft, flameRight);
@@ -155,7 +164,7 @@ export function createAirplaneVisual({
         new THREE.SphereGeometry(0.12, 10, 8),
         glowMaterial.clone()
       );
-      glow.position.set(side * 0.32, -0.1, 1.82);
+      glow.position.set(side * 0.34, -0.09, 1.84);
       airframe.add(glow);
     }
   }

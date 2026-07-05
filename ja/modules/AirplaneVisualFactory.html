@@ -1,6 +1,10 @@
 <!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="importmap">{"imports":{"three":"/GameBox/static/vendor/three.module.js"}}</script><title>AirplaneVisualFactory — GameBox</title><meta name="description" content="飛行アクター向けの飛行機ビジュアルモデルを構築する。"><link rel="canonical" href="https://shushuitie2017.github.io/GameBox/ja/modules/AirplaneVisualFactory.html"><link rel="alternate" hreflang="en" href="https://shushuitie2017.github.io/GameBox/en/modules/AirplaneVisualFactory.html"><link rel="alternate" hreflang="zh" href="https://shushuitie2017.github.io/GameBox/zh/modules/AirplaneVisualFactory.html"><link rel="alternate" hreflang="ja" href="https://shushuitie2017.github.io/GameBox/ja/modules/AirplaneVisualFactory.html"><link rel="alternate" hreflang="x-default" href="https://shushuitie2017.github.io/GameBox/en/modules/AirplaneVisualFactory.html"><meta property="og:type" content="website"><meta property="og:site_name" content="GameBox"><meta property="og:title" content="AirplaneVisualFactory — GameBox"><meta property="og:description" content="飛行アクター向けの飛行機ビジュアルモデルを構築する。"><meta property="og:url" content="https://shushuitie2017.github.io/GameBox/ja/modules/AirplaneVisualFactory.html"><meta property="og:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AirplaneVisualFactory — GameBox"><meta name="twitter:description" content="飛行アクター向けの飛行機ビジュアルモデルを構築する。"><meta name="twitter:image" content="https://shushuitie2017.github.io/GameBox/static/og-cover.png"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "GameBox", "url": "https://shushuitie2017.github.io/GameBox/ja/modules/AirplaneVisualFactory.html", "description": "飛行アクター向けの飛行機ビジュアルモデルを構築する。", "inLanguage": "ja"}</script><link rel="icon" href="/GameBox/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/GameBox/static/style.css"></head><body><div class="bg"></div><nav><div class="nav-in"><a href="/GameBox/ja/" class="brand"><svg viewBox="0 0 24 24" fill="none" style="stroke:var(--ac);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;width:22px;height:22px"><polygon points="12,2.6 20.4,7.3 20.4,16.7 12,21.4 3.6,16.7 3.6,7.3"></polygon><path d="M12,12 L12,21.4 M12,12 L20.4,7.3 M12,12 L3.6,7.3"></path></svg><b>GameBox</b></a><div class="nav-links"><a href="/GameBox/ja/modules/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 2 2 7l10 5 10-5L12 2Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>モジュール</a><a href="/GameBox/ja/demos/" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M9 9l4 3-4 3z"/></svg>デモ</a><a href="/GameBox/ja/#how" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>使い方</a><a href="/GameBox/ja/#install" class="nav-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>導入</a></div><div class="nav-right"><details class="lang-dd"><summary class="ls-sum"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg><span>日本語</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.7"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ls-panel"><a href="/GameBox/en/modules/AirplaneVisualFactory.html" class="ls-item">English</a><a href="/GameBox/zh/modules/AirplaneVisualFactory.html" class="ls-item">中文</a><a href="/GameBox/ja/modules/AirplaneVisualFactory.html" class="ls-item on">日本語<span class="ls-chk">✓</span></a></div></details><script>try{localStorage.setItem('gbx_lang','ja')}catch(e){}</script><a href="https://github.com/shushuitie2017/GameBox" class="nav-cta" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a></div></div></nav><header class="phead"><div class="wrap"><div class="crumb"><a href="/GameBox/ja/">ホーム</a> / <a href="/GameBox/ja/modules/">モジュール</a> / <a href="/GameBox/ja/modules/#cat-world">ワールド</a> / AirplaneVisualFactory</div><div class="mtitle-row"><h1 class="ptitle mono">AirplaneVisualFactory</h1><span class="tier tier-three">three</span></div><p class="psub">飛行アクター向けの飛行機ビジュアルモデルを構築する。</p></div></header><main class="wrap narrow module-body"><div class="meta-grid"><div class="meta-row"><span class="mk">カテゴリ</span><span class="mv">ワールド</span></div><div class="meta-row"><span class="mk">依存ティア</span><span class="mv"><span class="tier tier-three">three</span></span></div><div class="meta-row"><span class="mk">内部依存</span><span class="mv"><a href="/GameBox/ja/modules/JetFlame.html" class="pill">JetFlame</a></span></div><div class="meta-row"><span class="mk">関連モジュール</span><span class="mv"><span class="muted">なし</span></span></div><div class="meta-row"><span class="mk">デモシーン</span><span class="mv"><code>factory-showroom</code> · <a class="pill" href="/GameBox/ja/demos/">ファクトリーショールーム ↓</a></span></div></div><div class="getthis"><div class="gt-head"><b>このモジュールだけ取得</b><button class="copy-path" data-copy="modules/world/object/factory/AirplaneVisualFactory.js">相対パスをコピー</button></div><code class="gt-path">modules/world/object/factory/AirplaneVisualFactory.js</code><p class="sub">内部依存もまとめて、相対ディレクトリ構造を保ってコピーします。</p></div><section class="mod-demo"><div class="src-head"><h2 class="sh">ファクトリーショールーム</h2><span class="tier tier-three">three</span></div><div class="demo-stage" style="aspect-ratio:16/9"><div class="demo-canvas" id="demo-factory-showroom"></div><script type="module">import{mount}from"/GameBox/static/demos/factory-showroom.js";mount(document.getElementById("demo-factory-showroom"),{interactive:false});</script></div><p class="demo-controls">自動回転のショーケース——操作不要。</p></section><section class="source"><div class="src-head"><h2 class="sh">ソース</h2><button class="copy">ソースをコピー</button></div><div class="code code-src"><pre><code>import * as THREE from 'three';
 import { JetFlameLocalVisual } from '../../visual-effects/JetFlame.js';
 
+// A jet built around a lathed (surface-of-revolution) fuselage with swept wings,
+// a raked canopy and twin tail engines. Local frame: forward is -Z, aft is +Z,
+// so the jet flames sit at the tail. Public params and the returned shape
+// { group, airframe, jetFlames, targetRing } are unchanged.
 export function createAirplaneVisual({
   scale = 8,
   bodyColor = 0xe1ebf5,
@@ -57,75 +61,80 @@ export function createAirplaneVisual({
     transparent: true,
     opacity: canopyOpacity,
   });
+  const engineMaterial = new THREE.MeshStandardMaterial({ color: 0x3a4152, metalness: 0.7, roughness: 0.4 });
 
-  const fuselage = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.28, 0.36, 3.6, 18),
-    bodyMaterial
-  );
-  // CylinderGeometry head faces +Y, rotate -90 (clockwise) to make its head face -Z (local forward)
-  fuselage.rotation.x = -Math.PI / 2;
-  fuselage.castShadow = true;
-  airframe.add(fuselage);
+  // --- Fuselage: lathed profile (radius vs body length), nose at -Z. ---
+  const R = (r, y) =&gt; new THREE.Vector2(r, y);
+  const fuseProfile = [
+    R(0.05, 0), R(0.19, 0.35), R(0.28, 0.9), R(0.335, 1.5),
+    R(0.335, 2.05), R(0.30, 2.55), R(0.20, 3.05), R(0.10, 3.4), R(0.012, 3.62),
+  ];
+  const fuseGeo = new THREE.LatheGeometry(fuseProfile, 24);
+  fuseGeo.rotateX(-Math.PI / 2);   // body axis +Y → -Z (nose forward)
+  fuseGeo.translate(0, 0, 1.81);   // centre: nose ≈ -1.81, tail ≈ +1.81
+  const fuselage = new THREE.Mesh(fuseGeo, bodyMaterial);
+  fuselage.castShadow = true; airframe.add(fuselage);
 
-  const nose = new THREE.Mesh(
-    new THREE.ConeGeometry(0.28, 0.96, 18),
-    accentMaterial
-  );
-  // ConeGeometry is same to CylinderGeometry
-  nose.rotation.x = -Math.PI / 2;
-  nose.position.z = -2.25;
-  nose.castShadow = true;
-  airframe.add(nose);
+  // Accent nose cap at the tip.
+  const nose = new THREE.Mesh(new THREE.ConeGeometry(0.11, 0.5, 20), accentMaterial);
+  nose.rotation.x = -Math.PI / 2;                // cone tip +Y → -Z
+  nose.position.z = -1.68; airframe.add(nose);
 
   if (showCanopy) {
-    const canopy = new THREE.Mesh(
-      new THREE.SphereGeometry(0.32, 16, 12),
-      canopyMaterial
-    );
-    canopy.scale.set(1.05, 0.7, 1.8);
-    canopy.position.set(0, 0.25, -0.35);
+    const canopy = new THREE.Mesh(new THREE.SphereGeometry(0.3, 20, 14), canopyMaterial);
+    canopy.scale.set(1.0, 0.72, 1.9);
+    canopy.position.set(0, 0.24, -0.45);
     airframe.add(canopy);
   }
 
-  const wing = new THREE.Mesh(
-    new THREE.BoxGeometry(3.1, 0.1, 0.76),
-    bodyMaterial
-  );
-  wing.position.set(0, -0.02, 0.16);
-  wing.castShadow = true;
-  airframe.add(wing);
+  // --- Swept wings: extruded planform (span × chord), thin in Y. ---
+  function makeWing(rootChordF, rootChordB, tipChordF, tipChordB, span, thick) {
+    const shape = new THREE.Shape();
+    shape.moveTo(0, rootChordF);
+    shape.lineTo(span, tipChordF);
+    shape.lineTo(span, tipChordB);
+    shape.lineTo(0, rootChordB);
+    shape.closePath();
+    const geo = new THREE.ExtrudeGeometry(shape, { depth: thick, bevelEnabled: true, bevelThickness: 0.015, bevelSize: 0.015, bevelSegments: 1, steps: 1 });
+    geo.rotateX(Math.PI / 2);       // x=span, y(chord)→z (front -Z), thin in Y
+    geo.translate(0, 0, 0);
+    return geo;
+  }
+  // main wings (front chord negative = toward -Z), swept back at tips.
+  const wingGeoR = makeWing(-0.5, 0.55, 0.05, 0.36, 1.62, 0.07);
+  for (const sign of [1, -1]) {
+    const wing = new THREE.Mesh(wingGeoR, bodyMaterial);
+    wing.scale.x = sign;
+    wing.position.set(0, -0.03, 0.1);
+    wing.rotation.z = sign * 0.06;   // slight dihedral
+    wing.castShadow = true; airframe.add(wing);
+    // accent wingtip
+    const tip = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.05, 0.34), accentMaterial);
+    tip.position.set(sign * 1.62, -0.03 + 1.62 * 0.06, 0.28); airframe.add(tip);
+  }
 
-  const wingTip = new THREE.Mesh(
-    new THREE.BoxGeometry(3.6, 0.04, 0.2),
-    accentMaterial
-  );
-  wingTip.position.set(0, 0.06, -0.04);
-  wingTip.castShadow = true;
-  airframe.add(wingTip);
+  // --- Tail: swept vertical fin + horizontal stabilisers. ---
+  const finShape = new THREE.Shape();
+  finShape.moveTo(0, 0); finShape.lineTo(0.66, 0.34); finShape.lineTo(0.7, 0.62); finShape.lineTo(0.14, 0.58); finShape.closePath();
+  const finGeo = new THREE.ExtrudeGeometry(finShape, { depth: 0.06, bevelEnabled: false, steps: 1 });
+  finGeo.translate(-0.03, 0, -0.03);
+  finGeo.rotateY(Math.PI / 2);      // fin plane = Y-Z, thin in X
+  const fin = new THREE.Mesh(finGeo, accentMaterial);
+  fin.position.set(0, 0.2, 1.18); fin.castShadow = true; airframe.add(fin);
 
-  const tailWing = new THREE.Mesh(
-    new THREE.BoxGeometry(1.34, 0.08, 0.42),
-    bodyMaterial
-  );
-  tailWing.position.set(0, 0.28, 1.22);
-  tailWing.castShadow = true;
-  airframe.add(tailWing);
+  const stabGeo = makeWing(1.12, 1.42, 1.2, 1.36, 0.62, 0.05);
+  for (const sign of [1, -1]) {
+    const stab = new THREE.Mesh(stabGeo, bodyMaterial);
+    stab.scale.x = sign; stab.position.set(0, 0.24, 0.0); airframe.add(stab);
+  }
 
-  const tailFin = new THREE.Mesh(
-    new THREE.BoxGeometry(0.08, 0.86, 0.56),
-    accentMaterial
-  );
-  tailFin.position.set(0, 0.56, 1.18);
-  tailFin.castShadow = true;
-  airframe.add(tailFin);
-
-  const engineGeometry = new THREE.CylinderGeometry(0.14, 0.19, 1.15, 12);
+  // --- Twin tail engines + exhausts. ---
+  const engineGeo = new THREE.CylinderGeometry(0.15, 0.13, 1.0, 16);
+  engineGeo.rotateX(Math.PI / 2);
   for (const side of [-1, 1]) {
-    const engine = new THREE.Mesh(engineGeometry, bodyMaterial);
-    engine.rotation.x = Math.PI / 2;
-    engine.position.set(side * 0.34, -0.1, 1.25);
-    engine.castShadow = true;
-    airframe.add(engine);
+    const engine = new THREE.Mesh(engineGeo, engineMaterial);
+    engine.position.set(side * 0.34, -0.09, 1.28);
+    engine.castShadow = true; airframe.add(engine);
   }
 
   const airframeCenter = new THREE.Box3()
@@ -137,8 +146,8 @@ export function createAirplaneVisual({
   if (showJetFlames) {
     const flameLeft = new JetFlameLocalVisual();
     const flameRight = new JetFlameLocalVisual();
-    flameLeft.group.position.set(-0.34, -0.1, 1.78);
-    flameRight.group.position.set(0.34, -0.1, 1.78);
+    flameLeft.group.position.set(-0.34, -0.09, 1.82);
+    flameRight.group.position.set(0.34, -0.09, 1.82);
     airframe.add(flameLeft.group);
     airframe.add(flameRight.group);
     jetFlames.push(flameLeft, flameRight);
@@ -155,7 +164,7 @@ export function createAirplaneVisual({
         new THREE.SphereGeometry(0.12, 10, 8),
         glowMaterial.clone()
       );
-      glow.position.set(side * 0.32, -0.1, 1.82);
+      glow.position.set(side * 0.34, -0.09, 1.84);
       airframe.add(glow);
     }
   }
